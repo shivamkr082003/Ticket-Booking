@@ -1,0 +1,9 @@
+.pf-form        { display: flex; flex-direction: column; gap: 20px; }
+.pf-heading     { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: var(--text-primary); }
+.pf-stripe-wrap { background: rgba(var(--fg-rgb),.03); border: 1px solid var(--border-dim); border-radius: 12px; padding: 20px; }
+.pf-error       { display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: rgba(239,68,68,.08); border: 1px solid rgba(239,68,68,.25); border-radius: 8px; font-size: 13px; color: var(--red); }
+.pf-test-note   { background: rgba(59,130,246,.06); border: 1px solid rgba(59,130,246,.2); border-radius: 8px; padding: 12px 14px; font-size: 12px; color: rgba(var(--fg-rgb),.5); line-height: 1.6; }
+.pf-test-note strong { color: rgba(var(--fg-rgb),.8); }
+.pf-pay-btn     { width: 100%; padding: 14px; background: linear-gradient(135deg,#16a34a,#22c55e); border: none; border-radius: 10px; font-size: 14px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #fff; cursor: pointer; transition: opacity .15s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.pf-pay-btn:hover:not(:disabled) { opacity: .9; }
+.pf-pay-btn:disabled { opacity: .45; cursor: not-allowed; }

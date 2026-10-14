@@ -1,0 +1,11 @@
+.dp-row     { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 28px; scrollbar-width: none; }
+.dp-row::-webkit-scrollbar { display: none; }
+.dp-btn     { flex-shrink: 0; padding: 12px 16px; border: 1px solid var(--border-dim); border-radius: var(--radius-md); background: transparent; cursor: pointer; text-align: center; display: flex; flex-direction: column; gap: 3px; min-width: 70px; transition: all .2s; }
+.dp-btn.active { border-color: var(--text-accent); background: rgba(var(--accent-rgb),.08); }
+.dp-btn:not(.active):hover { border-color: var(--border-mid); background: rgba(var(--fg-rgb),.03); }
+.dp-day     { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.dp-num     { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--text-primary); line-height: 1; }
+.dp-mon     { font-size: 10px; color: var(--text-muted); }
+.dp-btn.active .dp-day,
+.dp-btn.active .dp-num,
+.dp-btn.active .dp-mon { color: var(--text-accent); }

@@ -1,0 +1,83 @@
+/* ── Two-panel auth frame ─────────────────────────────── */
+.as { min-height: 100vh; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); background: var(--bg-base); }
+
+/* Showcase */
+.as-showcase { position: sticky; top: 0; height: 100vh; overflow: hidden; color: #fff; background: #0c0816; }
+.as-photo { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transform: scale(1.06); transition: opacity 1.4s ease, transform 7s ease; }
+.as-photo.is-on { opacity: 1; transform: scale(1); }
+.as-shade { position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 80% at 0% 100%, rgba(155,92,255,.55), transparent 60%),
+    linear-gradient(180deg, rgba(10,6,22,.55) 0%, rgba(10,6,22,.4) 30%, rgba(10,6,22,.72) 55%, rgba(10,6,22,.94) 100%); }
+.as-showcase-inner { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; gap: 28px; padding: 40px clamp(32px, 4.5vw, 64px); }
+
+.as-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; align-self: flex-start; }
+.as-logo-icon { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; font-size: 19px; background: var(--brand-gradient); box-shadow: 0 6px 22px rgba(155,92,255,.45); }
+.as-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 5px; color: #fff; }
+
+.as-hero { margin-top: auto; }
+.as-kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #cbb3ff; }
+.as-kicker::before { content: ""; width: 22px; height: 2px; border-radius: 2px; background: var(--brand-gradient); }
+.as-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 6vw, 92px); line-height: .92; letter-spacing: 2px; margin: 12px 0 14px; text-shadow: 0 6px 30px rgba(0,0,0,.4); }
+.as-sub { font-size: 15.5px; line-height: 1.6; color: rgba(255,255,255,.78); max-width: 440px; }
+
+.as-perks { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.as-perks li { display: flex; gap: 12px; align-items: flex-start; padding: 13px 14px; border-radius: 16px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.as-perk-icon { flex: none; width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-size: 16px; background: rgba(155,92,255,.25); color: #e4d6ff; }
+.as-perks b { display: block; font-size: 13.5px; font-weight: 700; color: #fff; }
+.as-perks small { display: block; font-size: 12px; line-height: 1.4; color: rgba(255,255,255,.65); margin-top: 2px; }
+
+.as-stats { display: flex; gap: 28px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.12); }
+.as-stats strong { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 34px; letter-spacing: 1px; line-height: 1; }
+.as-stats span { font-size: 11.5px; letter-spacing: .5px; color: rgba(255,255,255,.6); }
+
+/* Form side */
+.as-main { position: relative; display: flex; flex-direction: column; min-height: 100vh; padding: 24px clamp(20px, 4vw, 56px);
+  background: radial-gradient(70% 50% at 100% 0%, rgba(var(--accent-rgb), .1), transparent 70%), var(--bg-base); }
+.as-main-top { display: flex; justify-content: space-between; align-items: center; }
+.as-back { font-size: 13px; font-weight: 700; color: var(--text-muted); text-decoration: none; }
+.as-back:hover { color: var(--text-primary); }
+.as-form-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 28px 0; }
+.as-legal { text-align: center; font-size: 12px; color: var(--text-muted); }
+.as-legal a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 2px; }
+
+/* The card loses its heavy chrome inside the shell — the panel is the frame now */
+.as .auth-card { max-width: 460px; padding: 36px; box-shadow: 0 30px 80px rgba(var(--shadow-rgb), calc(.35 * var(--shadow-k))); }
+.as .auth-card-lg { max-width: 560px; }
+.as .auth-card .auth-logo { display: none; }   /* the showcase carries the brand */
+
+/* Laptop heights: tighten the showcase */
+@media (max-height: 780px) and (min-width: 961px) {
+  .as-showcase-inner { gap: 18px; padding-top: 28px; padding-bottom: 28px; }
+  .as-title { font-size: clamp(44px, 5vw, 72px); }
+  .as-perks li { padding: 10px 12px; }
+  .as-perks small { display: none; }
+  .as-perks li { align-items: center; }
+  .as-stats { padding-top: 14px; }
+}
+
+/* Tablet & phone: showcase becomes a short banner above the form */
+@media (max-width: 960px) {
+  .as { grid-template-columns: 1fr; position: relative; }
+  .as-showcase { position: relative; height: auto; }
+  .as-showcase-inner { padding: 22px 22px 26px; gap: 18px; }
+  .as-hero { margin-top: 26px; }
+  .as-title { font-size: clamp(42px, 10vw, 60px); }
+  .as-sub { font-size: 14px; }
+  .as-perks { grid-template-columns: repeat(4, minmax(150px, 1fr)); overflow-x: auto; scrollbar-width: none; margin: 0 -22px; padding: 0 22px; }
+  .as-perks::-webkit-scrollbar { display: none; }
+  .as-perks small { display: none; }
+  .as-perks li { align-items: center; }
+  .as-stats { display: none; }
+  .as-main { min-height: 0; padding-top: 16px; position: static; }
+  .as-main-top { position: absolute; top: 22px; right: 22px; left: auto; z-index: 2; }
+  .as-back { display: none; }
+  .as-form-wrap { padding: 20px 0 24px; }
+  .as .auth-card { box-shadow: none; }
+}
+@media (max-width: 480px) {
+  .as-hero { margin-top: 14px; }
+  .as-sub { display: none; }
+  .as .auth-card { padding: 24px 18px; }
+}

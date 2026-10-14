@@ -1,0 +1,82 @@
+/* ── MOVIE CARD ── */
+.movie-card            { display: flex; flex-direction: column; height: 100%; }
+.movie-card-poster     { position: relative; padding-top: 148%; overflow: hidden; }
+.movie-card-poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; display: block; }
+.movie-card:hover .movie-card-poster img { transform: scale(1.06); }
+.movie-card-poster-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 56px; background: var(--bg-elevated); }
+.movie-card-poster-grad { position: absolute; inset: 0; background: linear-gradient(0deg, var(--bg-card) 0%, rgba(var(--card-rgb),.2) 50%, transparent 100%); }
+.movie-card-status     { position: absolute; top: 12px; left: 12px; }
+.movie-card-rating     { position: absolute; top: 12px; right: 12px; display: flex; align-items: center; gap: 4px; background: rgba(0,0,0,.7); backdrop-filter: blur(8px); border-radius: 6px; padding: 4px 8px; }
+.movie-card-info       { padding: 16px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.movie-card-title      { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; color: var(--text-primary); line-height: 1.1; }
+.movie-card-meta       { display: flex; justify-content: space-between; align-items: center; }
+.movie-card-genre      { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.movie-card-dur        { font-size: 11px; color: var(--text-muted); }
+.movie-card-langs      { display: flex; gap: 6px; flex-wrap: wrap; }
+.movie-card-lang       { padding: 2px 8px; border: 1px solid var(--border-dim); border-radius: 4px; font-size: 10px; color: var(--text-muted); }
+.movie-card-btn        { margin-top: auto; width: 100%; }
+
+/* ── THEATRE CARD ── */
+.theatre-card          { transition: transform .25s, border-color .25s; }
+.theatre-card-body     { display: flex; gap: 16px; padding: 22px; align-items: flex-start; }
+.theatre-card-icon     { font-size: 32px; flex-shrink: 0; }
+.theatre-card-info     { flex: 1; }
+.theatre-card-name     { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--text-primary); margin-bottom: 5px; }
+.theatre-card-city     { font-size: 12px; color: var(--text-accent); font-weight: 600; margin-bottom: 3px; display: flex; align-items: center; gap: 4px; }
+.theatre-card-address  { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.5; }
+.theatre-card-movies   { display: flex; align-items: center; gap: 6px; }
+.theatre-card-movies-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.theatre-card-movies-count { font-size: 12px; font-weight: 700; color: var(--text-accent); }
+.theatre-card-actions  { padding: 0 22px 18px; display: flex; gap: 8px; }
+
+/* ── SHOW CARD ── */
+.show-card {
+  display: flex; align-items: center; gap: 20px; padding: 18px 22px;
+  background: var(--bg-elevated); border: 1px solid var(--border-dim);
+  border-radius: var(--radius-md); transition: border-color .2s, background .2s;
+}
+.show-card:hover       { border-color: var(--border-accent); background: rgba(var(--accent-rgb),.03); }
+.show-card-time        { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 70px; }
+.show-card-hm          { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--text-primary); line-height: 1; }
+.show-card-date        { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+.show-card-mid         { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.show-card-seats       { display: flex; align-items: center; gap: 10px; }
+.show-card-bar         { flex: 1; max-width: 180px; height: 3px; background: var(--border-dim); border-radius: 2px; overflow: hidden; }
+.show-card-bar-fill    { height: 100%; background: var(--brand-gradient); border-radius: 2px; transition: width .3s; }
+.show-card-avail       { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+.show-card-right       { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+.show-card-price       { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--text-primary); }
+
+/* ── BOOKING CARD ── */
+.booking-card          { display: flex; justify-content: space-between; align-items: flex-start; padding: 22px; gap: 20px; }
+.booking-card-left     { display: flex; gap: 16px; flex: 1; }
+.booking-card-poster   { width: 60px; height: 84px; object-fit: cover; border-radius: 8px; flex-shrink: 0; background: var(--bg-elevated); }
+.booking-card-info     { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+.booking-card-movie    { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; color: var(--text-primary); }
+.booking-card-theatre  { font-size: 12px; color: var(--text-secondary); }
+.booking-card-time     { font-size: 12px; color: var(--text-secondary); }
+.booking-card-seats    { font-size: 12px; color: var(--text-accent); }
+.booking-card-cost     { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-top: 4px; }
+.booking-card-right    { display: flex; flex-direction: column; align-items: flex-end; }
+
+/* ── SEARCH BAR ── */
+.search-bar {
+  position: relative; display: flex; align-items: center;
+  background: var(--bg-surface); border: 1px solid var(--border-mid);
+  border-radius: var(--radius-lg); overflow: hidden; transition: border-color .2s;
+}
+.search-bar:focus-within { border-color: var(--border-accent); }
+.search-bar-icon         { padding: 0 14px; font-size: 16px; color: var(--text-muted); flex-shrink: 0; }
+.search-bar-input        { flex: 1; padding: 14px 0; background: transparent; border: none; color: var(--text-primary); font-size: 15px; outline: none; }
+.search-bar-input::placeholder { color: var(--text-muted); }
+.search-bar-clear        { padding: 0 16px; background: none; border: none; color: var(--text-muted); font-size: 14px; cursor: pointer; transition: color .2s; }
+.search-bar-clear:hover  { color: var(--text-primary); }
+
+/* ── PAGE SPINNER ── */
+.page-spinner { min-height: 60vh; display: flex; align-items: center; justify-content: center; }
+
+@media (max-width: 640px) {
+  .booking-card   { flex-direction: column; }
+  .show-card      { flex-wrap: wrap; gap: 12px; }
+  .show-card-bar  { max-width: 100%; }
+}

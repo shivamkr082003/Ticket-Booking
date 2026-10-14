@@ -1,0 +1,15 @@
+.op        { display: flex; flex-direction: column; gap: 8px; }
+.op-row    { display: flex; gap: 6px; }
+.op-row .form-input { padding: 9px 12px; font-size: 13px; letter-spacing: 1px; font-weight: 700; }
+.op-error  { font-size: 12px; color: var(--red); }
+.op-link   { align-self: flex-start; background: none; padding: 0; font-size: 12.5px; font-weight: 700; color: var(--text-accent); }
+.op-link:hover { text-decoration: underline; }
+.op-list   { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.op-list li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: 12px; border: 1px dashed var(--border-accent); background: rgba(var(--accent-rgb), .05); }
+.op-code   { font-size: 12.5px; font-weight: 800; letter-spacing: .6px; color: var(--text-primary); }
+.op-code b { color: var(--text-accent); letter-spacing: 0; }
+.op-desc   { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+.op-applied { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: rgba(47,191,113,.08); border: 1px solid rgba(47,191,113,.3); }
+.op-tag    { white-space: nowrap; font-size: 12.5px; font-weight: 800; letter-spacing: .6px; color: var(--text-primary); }
+.op-saved  { white-space: nowrap; font-size: 12.5px; font-weight: 700; color: var(--green); }
+.op-applied .op-link { margin-left: auto; }

@@ -1,0 +1,13 @@
+.lg { max-width: 760px; padding: 48px 0 90px; }
+.lg-tabs { display: inline-flex; gap: 4px; padding: 4px; border-radius: 12px; background: rgba(var(--fg-rgb), .05); border: 1px solid var(--border); margin-bottom: 26px; }
+.lg-tabs a { padding: 8px 16px; border-radius: 9px; font-size: 13px; font-weight: 700; color: var(--text-muted); text-decoration: none; }
+.lg-tabs a.active { background: var(--bg-card); color: var(--text-primary); box-shadow: 0 0 0 1px var(--border-accent) inset; }
+.lg-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(38px, 5vw, 60px); letter-spacing: 2px; line-height: 1; color: var(--text-primary); }
+.lg-updated { font-size: 12.5px; color: var(--text-muted); margin-top: 8px; }
+.lg-intro { font-size: 16px; line-height: 1.7; color: var(--text-secondary); margin: 20px 0 8px; }
+.lg-section { padding: 18px 0; border-top: 1px solid var(--border-dim); }
+.lg-section h2 { font-size: 16px; font-weight: 800; color: var(--text-primary); margin-bottom: 8px; }
+.lg-section p, .lg-section li { font-size: 14.5px; line-height: 1.7; color: var(--text-secondary); }
+.lg-section ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+.lg-help { margin-top: 24px; font-size: 14px; color: var(--text-muted); }
+.lg-help a { color: var(--text-accent); font-weight: 700; }

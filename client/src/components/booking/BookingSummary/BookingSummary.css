@@ -1,0 +1,38 @@
+.bs-card        { background: var(--bg-card); border: 1px solid var(--border-dim); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 22px; display: flex; flex-direction: column; gap: 14px; position: sticky; top: calc(var(--nav-h) + 20px); }
+.bs-heading     { font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 2px; color: var(--text-secondary); }
+.bs-movie       { display: flex; gap: 14px; }
+.bs-poster      { width: 56px; height: 80px; object-fit: cover; border-radius: 10px; flex-shrink: 0; box-shadow: var(--shadow-sm); }
+.bs-movie-info  { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.bs-movie-name  { font-weight: 800; font-size: 15px; color: var(--text-primary); line-height: 1.2; }
+.bs-theatre     { font-size: 12px; color: var(--text-secondary); }
+.bs-time        { font-size: 11.5px; color: var(--text-muted); }
+.bs-tags        { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 4px; }
+.bs-tag         { padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; background: rgba(var(--accent-rgb),.1); border: 1px solid rgba(var(--accent-rgb),.25); color: var(--text-accent); }
+.bs-divider     { height: 1px; background: var(--border-dim); }
+.bs-row         { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--text-secondary); }
+.bs-label       { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+.bs-count       { min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #fff; background: var(--brand-gradient); }
+.bs-amount      { font-weight: 700; color: var(--text-primary); }
+.bs-discount    { color: var(--green); font-weight: 700; font-size: 13px; }
+.bs-total       { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--text-primary); letter-spacing: 1px; padding-top: 4px; }
+.bs-no-seats    { font-size: 12.5px; color: var(--text-muted); font-style: italic; }
+.bs-seat-tags   { display: flex; flex-wrap: wrap; gap: 6px; }
+.bs-seat-tag    { padding: 4px 10px; border-radius: 8px; font-size: 12px; font-weight: 800; background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.3); color: var(--green); }
+.bs-cta         { width: 100%; padding: 14px; background: linear-gradient(135deg,#16a34a,#22c55e); border: none; border-radius: 12px; font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #fff; cursor: pointer; transition: box-shadow .2s, transform .2s var(--ease-out), opacity .15s; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 1px 0 rgba(255,255,255,.2) inset, 0 8px 22px rgba(22,163,74,.28); }
+.bs-cta:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,.2) inset, 0 12px 30px rgba(22,163,74,.38); }
+.bs-cta:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
+.bs-prime-upsell { display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 12px; font-size: 12px; line-height: 1.45; color: var(--text-secondary); background: rgba(245,198,107,.08); border: 1px solid rgba(245,198,107,.3); transition: background .2s, border-color .2s; }
+.bs-prime-upsell:hover { background: rgba(245,198,107,.14); border-color: rgba(245,198,107,.5); }
+.bs-prime-upsell strong { color: var(--yellow); }
+.bs-prime-icon  { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #2a1600; background: var(--gold-gradient); }
+.bs-note        { font-size: 11px; color: var(--text-muted); text-align: center; line-height: 1.5; }
+.bs-sublabel    { font-size: 10.5px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
+.bs-label--item { text-transform: none; letter-spacing: 0; font-weight: 600; color: var(--text-secondary); font-size: 12.5px; }
+
+.bs-fee small { font-size: 11px; color: var(--text-muted); }
+.bs-strike { opacity: .6; margin-right: 4px; font-weight: 500; }
+
+.bs-due { font-size: 14px; font-weight: 800; color: var(--text-primary); }
+.bs-wallet { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border); background: rgba(var(--fg-rgb), .02); font-size: 13px; font-weight: 600; color: var(--text-primary); cursor: pointer; }
+.bs-wallet small { display: block; font-size: 11.5px; font-weight: 500; color: var(--text-muted); }
+.bs-wallet input { width: 16px; height: 16px; accent-color: var(--accent); }

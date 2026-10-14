@@ -1,0 +1,3 @@
+.tdp-shows  { padding: 48px 0 72px; }
+.tdp-label  { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-accent); font-weight: 700; margin-bottom: 8px; }
+.tdp-title  { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px,4vw,44px); letter-spacing: 2px; color: var(--text-primary); margin-bottom: 24px; }

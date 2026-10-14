@@ -1,0 +1,7 @@
+.mp-filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 18px 0 6px; }
+.mp-toggle, .mp-select, .mp-clear { height: 38px; padding: 0 14px; border-radius: 12px; font-size: 13px; font-weight: 700; border: 1px solid var(--border-mid); background: rgba(var(--fg-rgb), .03); color: var(--text-secondary); }
+.mp-select { padding-right: 30px; cursor: pointer; }
+.mp-toggle:hover, .mp-select:hover { border-color: var(--border-accent); color: var(--text-primary); }
+.mp-toggle.active { color: #fff; border-color: transparent; background: var(--brand-gradient); box-shadow: 0 6px 18px rgba(var(--accent-rgb), .25); }
+.mp-clear { border: 0; background: none; color: var(--text-accent); padding: 0 6px; }
+.mp-clear:hover { text-decoration: underline; }

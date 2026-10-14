@@ -1,0 +1,7 @@
+.stars { position: relative; display: inline-block; line-height: 1; letter-spacing: 1px; }
+.stars-bg { color: rgba(var(--fg-rgb), .15); }
+.stars-fg { position: absolute; inset: 0 auto 0 0; overflow: hidden; white-space: nowrap; color: var(--gold, #f5c66b); }
+.stars-input { display: inline-flex; gap: 2px; }
+.stars-input button { background: none; padding: 0 1px; font-size: inherit; line-height: 1; color: rgba(var(--fg-rgb), .2); transition: color .12s, transform .12s; }
+.stars-input button.on { color: var(--gold, #f5c66b); }
+.stars-input button:hover { transform: scale(1.15); }

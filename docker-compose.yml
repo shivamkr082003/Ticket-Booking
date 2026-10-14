@@ -1,0 +1,61 @@
+services:
+  # ── MongoDB ──────────────────────────────────────────────
+  # NOT run locally — this project uses MongoDB Atlas (cloud).
+  # Atlas clusters are already replica sets under the hood, so
+  # mongoose transactions (used throughout booking.service.js) work
+  # against it exactly the same as they would against a local replica set.
+  # MONGODB_URI is read from server/.env (via env_file below) and is
+  # intentionally NOT overridden here.
+
+  # ── Redis ────────────────────────────────────────────────
+  # Shared, fast key-value store — replaces the in-memory `tempBlocked`
+  # object in socket.js so seat-locking state survives restarts and works
+  # correctly even if you scale to multiple server instances later.
+  # Also backs the movie caching layer (services/cache.service.js).
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # ── Backend API ──────────────────────────────────────────
+  server:
+    build:
+      context: ./server
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./server/.env
+    environment:
+      # Only REDIS_URL is overridden — inside the compose network, the
+      # server reaches Redis by service NAME ("redis"), not localhost.
+      # MONGODB_URI is left as whatever is already in server/.env (Atlas).
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ── Frontend ─────────────────────────────────────────────
+  client:
+    build:
+      context: ./client
+      args:
+        VITE_API_BASE_URL: http://localhost:3000/api/v1
+        VITE_STRIPE_PUBLISHABLE_KEY: ${VITE_STRIPE_PUBLISHABLE_KEY}
+    ports:
+      - "5173:80"
+    depends_on:
+      - server
+    restart: unless-stopped
+
+volumes:
+  # Named volume persists Redis data on the host even if containers are
+  # removed — no Mongo volume needed since Mongo runs on Atlas, not here.
+  redis-data:

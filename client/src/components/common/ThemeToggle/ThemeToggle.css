@@ -1,0 +1,25 @@
+.theme-toggle {
+  position: relative; flex-shrink: 0;
+  width: 40px; height: 40px; border-radius: 12px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(var(--fg-rgb), .04);
+  border: 1px solid var(--border-mid);
+  color: var(--text-secondary);
+  transition: color .2s, border-color .2s, background .2s, transform .2s var(--ease-out);
+}
+.theme-toggle:hover  { color: var(--text-accent); border-color: var(--border-accent); background: rgba(var(--accent-rgb),.06); }
+.theme-toggle:active { transform: scale(.94); }
+
+.theme-toggle-icon {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: rotate(-70deg) scale(.6);
+  transition: opacity .3s ease, transform .45s var(--ease-out);
+}
+.theme-toggle-icon.is-visible { opacity: 1; transform: rotate(0) scale(1); }
+
+/* Floating variant — pages without the navbar (auth) */
+.theme-toggle--floating {
+  position: fixed; top: 20px; right: 20px; z-index: 50;
+  background: var(--bg-elevated); box-shadow: var(--shadow-card);
+}

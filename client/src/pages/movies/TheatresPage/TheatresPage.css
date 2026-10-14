@@ -1,0 +1,38 @@
+.tp-header  { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 56px 0 28px; flex-wrap: wrap; }
+.tp-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 10.5px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--text-accent); font-weight: 700; margin-bottom: 10px; }
+.tp-eyebrow::before { content: ""; width: 18px; height: 2px; border-radius: 2px; background: var(--brand-gradient); }
+.tp-title   { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px,5.5vw,72px); letter-spacing: 3px; color: var(--text-primary); line-height: 1; }
+
+.tp-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.tp-search  { flex: 1; min-width: 260px; max-width: 520px; }
+
+.tp-formats { display: flex; gap: 6px; flex-wrap: wrap; }
+.tp-format  {
+  padding: 8px 15px; border-radius: 999px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+  border: 1px solid var(--border-mid); color: var(--text-secondary); background: transparent;
+  transition: all .2s;
+}
+.tp-format:not(.active):hover { border-color: var(--border-bright); color: var(--text-primary); }
+.tp-format.is-premium:not(.active) { border-color: rgba(245,198,107,.4); }
+.tp-format.active { border-color: transparent; color: #fff; background: var(--brand-gradient); box-shadow: 0 6px 18px rgba(var(--accent-rgb),.25); }
+
+.tp-grid    { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px,1fr)); gap: 18px; padding-bottom: 80px; }
+
+@media (max-width: 760px) {
+  .tp-header  { padding: 36px 0 20px; }
+  .tp-formats { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; width: 100%; }
+  .tp-formats::-webkit-scrollbar { display: none; }
+  .tp-format  { flex-shrink: 0; }
+}
+
+@media (max-width: 600px) {
+  .tp-grid  { grid-template-columns: 1fr; }
+}
+
+.tp-city-link { background: none; padding: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--text-primary); text-decoration: underline; text-underline-offset: 3px; }
+.tp-city-link:hover { color: var(--text-accent); }
+
+.tp-near { padding: 9px 16px; border-radius: 12px; font-size: 12px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; border: 1px solid var(--border-mid); background: rgba(var(--fg-rgb), .03); color: var(--text-secondary); white-space: nowrap; }
+.tp-near:hover { border-color: var(--border-accent); color: var(--text-primary); }
+.tp-near.active { color: var(--text-accent); border-color: var(--border-accent); background: rgba(var(--accent-rgb), .1); }

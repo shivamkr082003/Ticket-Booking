@@ -1,0 +1,17 @@
+.rc             { background: var(--bg-card); border: 1px solid var(--border-dim); border-radius: 14px; padding: 20px; transition: border-color .2s; }
+.rc:hover       { border-color: var(--border-mid); }
+.rc-header      { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+.rc-user-info   { flex: 1; }
+.rc-user-name   { font-weight: 700; font-size: 14px; color: var(--text-primary); }
+.rc-date        { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.rc-stars       { display: flex; align-items: center; gap: 2px; flex-shrink: 0; }
+.rc-star        { font-size: 12px; color: var(--border-mid); transition: color .1s; }
+.rc-star.filled { color: var(--star); }
+.rc-rating-num  { font-size: 11px; color: var(--text-muted); margin-left: 6px; font-weight: 700; }
+.rc-comment     { font-size: 14px; line-height: 1.75; color: var(--text-secondary); margin-bottom: 14px; }
+.rc-footer      { display: flex; align-items: center; justify-content: space-between; }
+.rc-like-btn    { background: transparent; border: 1px solid var(--border-dim); border-radius: 20px; padding: 4px 14px; font-size: 13px; color: var(--text-muted); cursor: pointer; transition: all .15s; }
+.rc-like-btn:hover { border-color: #ef4444; color: var(--red); }
+.rc-like-btn.liked { border-color: #ef4444; color: var(--red); background: rgba(239,68,68,.08); }
+.rc-actions     { display: flex; gap: 6px; }
+.rc-delete-btn  { color: var(--red) !important; }

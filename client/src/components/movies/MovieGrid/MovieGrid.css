@@ -1,0 +1,12 @@
+.mg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(188px, 1fr));
+  gap: 20px;
+  padding-bottom: 80px;
+}
+.mg-skeleton { border-radius: 12px; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border-dim); }
+.mg-skeleton-body { padding: 12px 12px 14px; display: flex; flex-direction: column; gap: 7px; }
+
+@media (max-width: 768px) {
+  .mg-grid { grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 12px; }
+}

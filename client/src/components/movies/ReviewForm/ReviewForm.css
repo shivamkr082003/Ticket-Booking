@@ -1,0 +1,14 @@
+.rf-wrap            { background: var(--bg-card); border: 1px solid var(--border-accent); border-radius: 14px; padding: 22px; }
+.rf-heading         { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: var(--text-primary); margin-bottom: 18px; }
+.rf-label           { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px; }
+.rf-rating-section  { margin-bottom: 18px; }
+.rf-stars           { display: flex; align-items: center; gap: 4px; }
+.rf-star            { background: none; border: none; font-size: 26px; cursor: pointer; color: var(--border-mid); padding: 0; transition: color .1s, transform .1s; line-height: 1; }
+.rf-star.active     { color: var(--star); }
+.rf-star:hover      { transform: scale(1.2); }
+.rf-rating-val      { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--star); margin-left: 8px; }
+.rf-comment-section { margin-bottom: 14px; }
+.rf-textarea        { resize: vertical; min-height: 100px; }
+.rf-char-count      { font-size: 11px; color: var(--text-muted); text-align: right; margin-top: 4px; }
+.rf-error           { font-size: 13px; color: var(--red); margin-bottom: 12px; }
+.rf-actions         { display: flex; gap: 10px; justify-content: flex-end; }

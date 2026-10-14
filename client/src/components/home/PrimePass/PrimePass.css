@@ -1,0 +1,70 @@
+/* .theme-dark island — a black-and-gold card in both themes */
+.prime-section {
+  width: calc(100% - 112px);
+  max-width: 1328px;
+  margin: 104px auto 0;
+  border-radius: 28px; overflow: hidden;
+  border: 1px solid rgba(245,198,107,.22);
+  padding: 60px 64px;
+  position: relative;
+  background:
+    radial-gradient(ellipse 80% 120% at 100% 0%, rgba(var(--accent-rgb),.16), transparent 60%),
+    linear-gradient(135deg, #1d1036 0%, #0e0a18 48%, #170c2a 100%);
+  box-shadow: 0 30px 80px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.06) inset;
+}
+:root[data-theme="light"] .prime-section { box-shadow: 0 30px 70px rgba(60,42,24,.25); }
+
+.prime-glow-r    { position: absolute; top: -90px; right: -60px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(245,198,107,.16) 0%, transparent 70%); pointer-events: none; }
+.prime-glow-l    { position: absolute; bottom: -120px; left: 120px; width: 480px; height: 360px; background: radial-gradient(circle, rgba(168,85,247,.12) 0%, transparent 70%); pointer-events: none; }
+.prime-line      { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, #f5c66b, var(--accent), #a855f7, transparent); }
+
+.prime-inner     { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 48px; }
+.prime-eyebrow   { font-size: 10.5px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; font-weight: 700; }
+.prime-title     { font-family: 'Bebas Neue', sans-serif; font-size: 68px; letter-spacing: 2px; color: #fff; line-height: .92; margin-bottom: 20px; }
+.prime-accent    { background: var(--gold-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.prime-desc      { font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 26px; max-width: 500px; }
+.prime-features  { display: flex; gap: 10px; flex-wrap: wrap; }
+.prime-feature   { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px; border-radius: 999px; font-size: 12.5px; font-weight: 600; color: var(--text-primary); background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); }
+.prime-check     { width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: #2a1600; background: var(--gold-gradient); }
+
+.prime-price-box { text-align: right; flex-shrink: 0; }
+.prime-was       { font-size: 12px; color: var(--text-muted); letter-spacing: 1.5px; text-decoration: line-through; margin-bottom: 4px; }
+.prime-price     { font-family: 'Bebas Neue', sans-serif; font-size: 92px; color: #fff; line-height: 1; }
+.prime-period    { font-size: 12px; color: var(--text-muted); margin-bottom: 26px; }
+.prime-member-badge { display: inline-flex; padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #2a1600; background: var(--gold-gradient); margin-bottom: 12px; }
+.btn-prime       {
+  display: block; padding: 16px 40px; margin: 0 0 12px auto;
+  border-radius: 14px; color: #2a1600;
+  background: var(--gold-gradient);
+  font-size: 13px; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase;
+  box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 12px 34px rgba(245,158,11,.3);
+  transition: box-shadow .25s;
+}
+.btn-prime:hover { box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 16px 46px rgba(245,158,11,.5); }
+.prime-note      { font-size: 11.5px; color: var(--text-muted); }
+
+/* ===== Medium screens (tablets) ===== */
+@media (max-width: 1024px) {
+  .prime-section { width: calc(100% - 64px); margin-top: 88px; padding: 44px 40px; }
+  .prime-inner   { gap: 36px; }
+  .prime-title   { font-size: 54px; }
+  .prime-desc    { font-size: 14px; max-width: 420px; }
+  .prime-price   { font-size: 74px; }
+  .btn-prime     { padding: 14px 32px; }
+}
+
+/* ===== Small screens (mobile) ===== */
+@media (max-width: 760px) {
+  .prime-section { width: calc(100% - 40px); margin-top: 72px; padding: 32px 22px; border-radius: 22px; }
+  .prime-inner   { flex-direction: column; align-items: flex-start; gap: 28px; }
+  .prime-title   { font-size: 44px; line-height: 1; }
+  .prime-desc    { font-size: 14px; line-height: 1.7; max-width: 100%; }
+  .prime-features { gap: 8px; }
+  .prime-feature { font-size: 11.5px; }
+  .prime-price-box { text-align: left; width: 100%; }
+  .prime-price   { font-size: 64px; }
+  .prime-period  { margin-bottom: 18px; }
+  .btn-prime     { width: 100%; text-align: center; margin-left: 0; }
+  .prime-glow-r  { width: 240px; height: 240px; top: -40px; right: -40px; }
+  .prime-glow-l  { width: 260px; height: 220px; left: 40px; bottom: -60px; }
+}

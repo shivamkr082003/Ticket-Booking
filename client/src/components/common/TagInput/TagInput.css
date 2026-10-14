@@ -1,0 +1,6 @@
+.ti-options   { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.ti-input-row { display: flex; gap: 8px; }
+.ti-tags      { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.ti-tag       { display: inline-flex; align-items: center; gap: 5px; background: rgba(var(--fg-rgb),.06); border: 1px solid var(--border-dim); border-radius: 20px; padding: 3px 10px; font-size: 12px; color: var(--text-secondary); }
+.ti-tag-remove { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 12px; padding: 0; line-height: 1; transition: color .15s; }
+.ti-tag-remove:hover { color: var(--red); }

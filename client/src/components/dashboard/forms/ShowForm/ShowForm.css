@@ -1,0 +1,19 @@
+.sf-mode { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; margin-bottom: 18px; border-radius: 12px; background: rgba(var(--fg-rgb), .05); border: 1px solid var(--border); }
+.sf-mode button { padding: 9px 12px; border-radius: 9px; font-size: 13px; font-weight: 700; color: var(--text-muted); background: none; transition: background .15s, color .15s; }
+.sf-mode button.active { background: var(--bg-card); color: var(--text-primary); box-shadow: 0 1px 4px rgba(var(--shadow-rgb), .18), 0 0 0 1px var(--border-accent) inset; }
+.sf-repeat { padding: 14px; margin-bottom: 16px; border-radius: 14px; border: 1px dashed var(--border-accent); background: rgba(var(--accent-rgb), .04); display: flex; flex-direction: column; gap: 6px; }
+.sf-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; align-items: center; }
+.sf-chip { padding: 6px 12px; border-radius: 9px; font-size: 12.5px; font-weight: 700; border: 1px solid var(--border-mid); background: rgba(var(--fg-rgb), .03); color: var(--text-muted); }
+.sf-chip.active { border-color: var(--border-accent); background: rgba(var(--accent-rgb), .12); color: var(--text-accent); }
+.sf-time { display: inline-flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
+.sf-time button { background: none; padding: 0; font-size: 15px; line-height: 1; color: inherit; opacity: .7; }
+.sf-time button:hover { opacity: 1; color: var(--red); }
+.sf-add-time { display: inline-flex; gap: 6px; align-items: center; }
+.sf-add-time .form-input { width: 120px; padding: 6px 10px; font-size: 13px; }
+.sf-summary { font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; }
+.sf-summary b { color: var(--text-accent); font-size: 14px; }
+.sf-summary.is-over, .sf-summary.is-over b { color: var(--red); }
+
+.sf-rules { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; margin-bottom: 14px; border-radius: 12px; background: rgba(245,198,107,.08); border: 1px solid rgba(245,198,107,.3); font-size: 13px; font-weight: 600; color: var(--text-primary); cursor: pointer; }
+.sf-rules input { margin-top: 3px; }
+.sf-rules small { display: block; font-weight: 500; color: var(--text-muted); margin-top: 2px; }

@@ -1,0 +1,28 @@
+.rs-section     { padding: 56px 0 72px; border-top: 1px solid var(--border-dim); }
+.rs-header      { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
+.rs-eyebrow     { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--text-accent); font-weight: 700; margin-bottom: 8px; }
+.rs-title       { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px,4vw,44px); letter-spacing: 2px; color: var(--text-primary); }
+
+/* Summary */
+.rs-summary     { display: flex; gap: 32px; background: var(--bg-card); border: 1px solid var(--border-dim); border-radius: 14px; padding: 24px 28px; margin-bottom: 28px; flex-wrap: wrap; }
+.rs-avg         { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 90px; }
+.rs-avg-num     { font-family: 'Bebas Neue', sans-serif; font-size: 56px; color: var(--star); line-height: 1; }
+.rs-avg-label   { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+.rs-avg-count   { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+.rs-dist        { flex: 1; display: flex; flex-direction: column; gap: 5px; justify-content: center; }
+.rs-dist-row    { display: flex; align-items: center; gap: 10px; }
+.rs-dist-label  { font-size: 11px; color: var(--text-muted); width: 30px; text-align: right; flex-shrink: 0; }
+.rs-dist-bar    { flex: 1; height: 6px; background: var(--border-dim); border-radius: 3px; overflow: hidden; }
+.rs-dist-fill   { height: 100%; background: linear-gradient(to right,#f59e0b,#ef4444); border-radius: 3px; transition: width .3s; }
+.rs-dist-count  { font-size: 11px; color: var(--text-muted); width: 20px; flex-shrink: 0; }
+
+/* My review */
+.rs-my-review   { margin-bottom: 20px; }
+.rs-my-label    { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--text-accent); margin-bottom: 10px; }
+
+/* List */
+.rs-list        { display: flex; flex-direction: column; gap: 14px; }
+
+/* Pagination */
+.rs-pagination  { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 28px; }
+.rs-page-info   { font-size: 12px; color: var(--text-muted); }

@@ -1,0 +1,17 @@
+.tmg-section    { padding: 8px 0 40px; border-bottom: 1px solid var(--border-dim); }
+.tmg-label      { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-accent); font-weight: 700; margin-bottom: 8px; margin-top: 40px; }
+.tmg-title      { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px,4vw,44px); letter-spacing: 2px; color: var(--text-primary); margin-bottom: 24px; }
+.tmg-grid       { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px,1fr)); gap: 14px; }
+.tmg-card       { border-radius: 10px; overflow: hidden; cursor: pointer; background: var(--bg-card); border: 1px solid var(--border-dim); transition: transform .25s, border-color .2s; }
+.tmg-card:hover { transform: translateY(-5px); border-color: rgba(var(--fg-rgb),.15); }
+.tmg-poster     { position: relative; padding-top: 145%; overflow: hidden; }
+.tmg-poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.tmg-card:hover .tmg-poster img { transform: scale(1.04); }
+.tmg-fallback   { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 32px; background: var(--bg-elevated); }
+.tmg-grad       { position: absolute; inset: 0; background: linear-gradient(0deg,rgba(8,8,8,.8) 0%,transparent 50%); }
+.tmg-rating     { position: absolute; top: 8px; right: 8px; display: flex; align-items: center; gap: 3px; background: rgba(0,0,0,.75); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.15); border-radius: 5px; padding: 3px 7px; font-size: 11px; font-weight: 800; color: #fff; }
+.tmg-star       { color: #fbbf24; font-size: 10px; }
+.tmg-cert       { position: absolute; top: 8px; left: 8px; padding: 2px 6px; border-radius: 4px; background: rgba(0,0,0,.75); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.2); font-size: 9px; font-weight: 900; color: #fff; text-transform: uppercase; }
+.tmg-info       { padding: 10px 10px 12px; }
+.tmg-name       { font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: .8px; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
+.tmg-meta       { font-size: 10px; color: var(--text-muted); }

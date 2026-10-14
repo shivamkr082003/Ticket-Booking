@@ -1,0 +1,12 @@
+.tp-container { padding: 40px 0 80px; }
+.tp-policy    { max-width: 700px; margin: 18px auto 0; text-align: center; font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+.tp-policy b  { color: var(--text-secondary); }
+.tp-actions   { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+
+@media print {
+  .app-nav, .tp-actions, .grain, .toast-wrap { display: none !important; }
+  .tc-ticket { border: 1px solid #ccc; }
+  .page-wrapper { padding-top: 0 !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+.tp-share { color: #25d366; }

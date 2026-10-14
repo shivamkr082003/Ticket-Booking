@@ -1,0 +1,28 @@
+/* Hero */
+.mf-hero        { position: relative; padding: 88px 0 50px; overflow: hidden; border-bottom: 1px solid var(--border-dim); }
+.mf-hero-glow   { position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 700px; height: 420px; background: radial-gradient(ellipse, rgba(var(--accent-rgb),.07) 0%, transparent 68%); pointer-events: none; }
+.mf-eyebrow     { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--text-accent); font-weight: 700; margin-bottom: 14px; }
+.mf-title       { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px,8vw,110px); letter-spacing: 6px; line-height: .88; color: var(--text-primary); margin-bottom: 36px; }
+.mf-search-wrap { max-width: 520px; }
+
+/* Filter bar */
+.mf-bar         { position: sticky; top: var(--nav-h); z-index: 100; background: rgba(var(--bg-rgb),.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-dim); padding: 12px 0; }
+.mf-bar-inner   { display: flex; align-items: center; gap: 20px; }
+.mf-genres-scroll { display: flex; gap: 6px; overflow-x: auto; flex: 1; padding-bottom: 2px; scrollbar-width: none; }
+.mf-genres-scroll::-webkit-scrollbar { display: none; }
+.mf-chip        { padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; border: 1px solid var(--border-dim); color: var(--text-muted); background: transparent; white-space: nowrap; cursor: pointer; transition: all .18s; }
+.mf-chip.active { border-color: var(--text-accent); color: var(--text-accent); background: rgba(var(--accent-rgb),.1); }
+.mf-chip:not(.active):hover { border-color: var(--border-mid); color: var(--text-secondary); }
+.mf-sort        { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.mf-sort-label  { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.mf-sort-select { padding: 6px 12px; background: var(--bg-surface); border: 1px solid var(--border-dim); border-radius: 6px; color: var(--text-secondary); font-size: 12px; cursor: pointer; }
+
+/* Count */
+.mf-count       { padding: 24px 0 16px; font-size: 11px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+
+@media (max-width: 768px) {
+  .mf-hero      { padding: 62px 0 36px; }
+  .mf-title     { font-size: 52px; }
+  .mf-bar-inner { flex-wrap: wrap; gap: 10px; }
+  .mf-sort      { width: 100%; }
+}

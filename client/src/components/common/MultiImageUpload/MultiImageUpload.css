@@ -1,0 +1,14 @@
+.miu-wrap     { display: flex; flex-direction: column; gap: 10px; }
+.miu-optional { font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 11px; color: var(--text-muted); margin-left: 4px; }
+.miu-count    { font-weight: 400; font-size: 11px; color: var(--text-muted); margin-left: 4px; text-transform: none; letter-spacing: 0; }
+.miu-grid     { display: flex; flex-wrap: wrap; gap: 8px; }
+.miu-thumb    { position: relative; width: 80px; height: 60px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border-dim); }
+.miu-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.miu-remove   { position: absolute; top: 3px; right: 3px; background: rgba(0,0,0,.75); border: none; border-radius: 50%; width: 18px; height: 18px; color: #fff; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.miu-actions  { display: flex; flex-direction: column; gap: 8px; }
+.miu-upload-btn { padding: 9px 16px; border: 1px dashed var(--border-dim); border-radius: 8px; background: rgba(var(--fg-rgb),.02); color: var(--text-secondary); font-size: 13px; cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 8px; }
+.miu-upload-btn:hover { border-color: var(--text-accent); color: var(--text-accent); }
+.miu-upload-btn:disabled { opacity: .5; cursor: not-allowed; }
+.miu-url-row  { display: flex; gap: 8px; }
+.miu-url-row .form-input { flex: 1; }
+.miu-error    { font-size: 12px; color: var(--red); }

@@ -1,0 +1,26 @@
+.sc {
+  display: flex; align-items: center; gap: 20px;
+  padding: 16px 20px;
+  background: var(--bg-elevated); border: 1px solid var(--border-dim);
+  border-radius: var(--radius-md);
+  transition: border-color .2s, background .2s;
+}
+.sc:hover { border-color: var(--border-accent); background: rgba(var(--accent-rgb),.03); }
+
+/* Time */
+.sc-time    { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 70px; }
+.sc-hm      { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--text-primary); line-height: 1; }
+.sc-date    { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+/* Mid */
+.sc-mid     { flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.sc-lang    { font-size: 11px; color: var(--text-muted); }
+.sc-seats   { display: flex; align-items: center; gap: 10px; width: 100%; }
+.sc-bar     { flex: 1; max-width: 160px; height: 3px; background: var(--border-dim); border-radius: 2px; overflow: hidden; }
+.sc-bar-fill { height: 100%; background: var(--brand-gradient); border-radius: 2px; transition: width .3s; }
+.sc-avail   { font-size: 11px; white-space: nowrap; }
+
+/* Right */
+.sc-right   { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+.sc-price   { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--text-primary); }
+.sc-tag { display: inline-flex; align-items: center; gap: 3px; padding: 2px 7px; border-radius: 6px; font-size: 10.5px; font-weight: 700; color: var(--text-secondary); border: 1px solid var(--border-mid); background: rgba(var(--fg-rgb), .03); }

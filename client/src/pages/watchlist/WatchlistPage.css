@@ -1,0 +1,15 @@
+.wl-page { padding: 56px 0 80px; }
+.wl-eyebrow { font-size: 10.5px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--text-accent); font-weight: 700; margin-bottom: 10px; }
+.wl-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5.5vw, 72px); letter-spacing: 3px; color: var(--text-primary); line-height: 1; }
+.wl-sub { margin-top: 10px; font-size: 14px; color: var(--text-muted); }
+.wl-section { margin-top: 36px; }
+.wl-section-title { font-size: 13px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 14px; }
+.wl-section-title span { margin-left: 6px; padding: 2px 8px; border-radius: 10px; background: rgba(var(--accent-rgb), .12); color: var(--text-accent); font-size: 11px; }
+.wl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+.wl-item { display: flex; flex-direction: column; gap: 8px; }
+.wl-item-actions { display: flex; gap: 6px; }
+.wl-chip { flex: 1; white-space: nowrap; padding: 7px 8px; border-radius: 10px; font-size: 12px; font-weight: 700; border: 1px solid var(--border-mid); background: rgba(var(--fg-rgb), .03); color: var(--text-secondary); }
+.wl-chip:hover { border-color: var(--border-accent); color: var(--text-primary); }
+.wl-chip.is-on { color: var(--yellow); border-color: rgba(245,198,107,.45); background: rgba(245,198,107,.1); }
+.wl-remove:hover { color: var(--red); border-color: rgba(239,68,68,.4); }
+@media (max-width: 480px) { .wl-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }

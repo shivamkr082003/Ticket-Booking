@@ -1,0 +1,61 @@
+.tc-wrap            { display: flex; flex-direction: column; gap: 20px; max-width: 700px; margin: 0 auto; }
+
+/* Success banner */
+.tc-success-banner  { display: flex; align-items: center; gap: 14px; background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.25); border-radius: 12px; padding: 16px 20px; }
+.tc-success-icon    { width: 40px; height: 40px; border-radius: 50%; background: #22c55e; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #fff; font-weight: 900; flex-shrink: 0; }
+.tc-success-title   { font-weight: 800; font-size: 16px; color: var(--text-primary); }
+.tc-success-sub     { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+/* Ticket */
+.tc-ticket          { display: flex; background: var(--bg-card); border: 1px solid var(--border-dim); border-radius: 16px; overflow: hidden; }
+.tc-left            { flex: 1; padding: 24px; display: flex; gap: 16px; }
+.tc-poster          { width: 80px; height: 114px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+.tc-movie-info      { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.tc-movie-name      { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1px; color: var(--text-primary); line-height: 1.1; }
+.tc-tags            { display: flex; gap: 6px; flex-wrap: wrap; }
+.tc-tag             { padding: 2px 9px; border-radius: 20px; font-size: 10px; font-weight: 700; background: rgba(var(--accent-rgb),.1); border: 1px solid rgba(var(--accent-rgb),.25); color: var(--text-accent); }
+.tc-theatre         { font-weight: 700; font-size: 13px; color: var(--text-secondary); }
+.tc-address         { font-size: 12px; color: var(--text-muted); }
+.tc-time            { font-size: 12px; color: var(--text-secondary); font-weight: 600; }
+.tc-screen          { font-size: 12px; color: var(--text-muted); }
+
+/* Perforated divider */
+.tc-divider         { position: relative; width: 24px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; background: var(--bg-card); }
+.tc-notch           { width: 20px; height: 20px; border-radius: 50%; background: var(--bg-base); border: 1px solid var(--border-dim); flex-shrink: 0; }
+.tc-notch--top      { margin-top: -10px; }
+.tc-notch--bottom   { margin-bottom: -10px; }
+.tc-dotted          { flex: 1; border-left: 2px dashed var(--border-dim); }
+
+/* Right */
+.tc-right           { width: 200px; flex-shrink: 0; padding: 24px 20px; display: flex; flex-direction: column; gap: 16px; background: rgba(var(--fg-rgb),.02); }
+.tc-seats-section   { display: flex; flex-direction: column; gap: 8px; }
+.tc-label           { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
+.tc-seat-tags       { display: flex; flex-wrap: wrap; gap: 5px; }
+.tc-seat-tag        { padding: 3px 9px; border-radius: 6px; font-size: 12px; font-weight: 700; background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.3); color: var(--green); }
+.tc-amount-row      { display: flex; flex-direction: column; gap: 3px; }
+.tc-amount          { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--text-primary); letter-spacing: 1px; }
+.tc-qr-wrap         { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.tc-qr              { border-radius: 10px; background: #fff; box-shadow: 0 0 0 1px var(--border-dim), var(--shadow-sm); }
+.tc-ticket-code     { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--text-muted); }
+
+/* Food & offer */
+.tc-food     { padding: 16px 20px; border-radius: 14px; background: var(--bg-card); border: 1px solid var(--border-dim); }
+.tc-food ul  { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+.tc-food li  { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--text-secondary); }
+.tc-food b   { color: var(--text-primary); }
+.tc-offer    { font-size: 13px; font-weight: 600; color: var(--green); text-align: center; }
+.tc-admitted { font-size: 11px; font-weight: 800; letter-spacing: .5px; padding: 4px 10px; border-radius: 999px; color: #fff; background: #1ea83c; }
+.tc-qr.is-used { opacity: .35; filter: grayscale(1); }
+
+/* Booking ID */
+.tc-booking-id      { font-size: 11px; color: var(--text-muted); text-align: center; letter-spacing: 1px; }
+
+@media (max-width: 600px) {
+  .tc-ticket    { flex-direction: column; }
+  .tc-divider   { width: 100%; height: 24px; flex-direction: row; }
+  .tc-notch     { margin: 0; }
+  .tc-notch--top    { margin-left: -10px; }
+  .tc-notch--bottom { margin-right: -10px; }
+  .tc-dotted    { flex: 1; border-left: none; border-top: 2px dashed var(--border-dim); }
+  .tc-right     { width: 100%; }
+}

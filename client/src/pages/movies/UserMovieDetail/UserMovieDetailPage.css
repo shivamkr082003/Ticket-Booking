@@ -1,0 +1,337 @@
+Hero
+/* .umd-hero          { position: relative; min-height: 520px; overflow: hidden; display: flex; align-items: flex-end; }
+.umd-hero-bg       { position: absolute; inset: 0; background-size: cover; background-position: center top; }
+.umd-hero-blur     { position: absolute; inset: 0; backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); }
+.umd-hero-grad     { position: absolute; inset: 0; background: linear-gradient(105deg,rgba(8,8,8,.98) 0%,rgba(8,8,8,.8) 38%,rgba(8,8,8,.3) 65%,rgba(8,8,8,.1) 100%), linear-gradient(0deg,#080808 0%,rgba(8,8,8,.6) 30%,transparent 60%); }
+.umd-hero-inner    { position: relative; z-index: 1; display: flex; gap: 48px; align-items: flex-end; padding: 60px 0 52px; width: 100%; } */
+
+/* Poster */
+/* .umd-poster-wrap   { flex-shrink: 0; position: relative; }
+.umd-poster        { width: 200px; height: 290px; object-fit: cover; border-radius: var(--radius-lg); box-shadow: 0 24px 64px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.07); display: block; }
+.umd-poster-fallback { width: 200px; height: 290px; border-radius: var(--radius-lg); background: var(--bg-elevated); display: flex; align-items: center; justify-content: center; font-size: 56px; border: 1px solid var(--border-dim); }
+.umd-cert          { position: absolute; top: -10px; right: -10px; width: 34px; height: 34px; border-radius: 8px; background: var(--text-accent); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #fff; box-shadow: 0 4px 14px rgba(var(--accent-rgb),.5); } */
+
+/* Info */
+/* .umd-info          { flex: 1; padding-bottom: 4px; }
+.umd-badges        { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.umd-title         { font-family: 'Bebas Neue', sans-serif; font-size: clamp(46px,6.5vw,88px); line-height: .88; letter-spacing: 2px; color: #fff; margin-bottom: 12px; }
+.umd-director      { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; }
+.umd-director strong { color: var(--text-secondary); }
+.umd-meta-row      { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+.umd-meta-sep      { width: 1px; height: 16px; background: var(--border-mid); flex-shrink: 0; }
+.umd-meta-item     { font-size: 13px; color: var(--text-secondary); }
+.umd-desc          { font-size: 14px; line-height: 1.85; color: var(--text-muted); max-width: 560px; margin-bottom: 18px; font-style: italic; font-family: 'DM Serif Display', serif; }
+.umd-langs         { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.umd-lang          { padding: 4px 12px; background: var(--bg-surface); border: 1px solid var(--border-mid); border-radius: var(--radius-sm); font-size: 11px; color: var(--text-secondary); }
+.umd-cta-row       { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; } */
+
+/* Cast */
+/* .umd-cast          { } */
+/* .umd-cast-label    { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+.umd-cast-list     { display: flex; gap: 10px; flex-wrap: wrap; }
+.umd-cast-chip     { display: flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(255,255,255,.04); border: 1px solid var(--border-dim); border-radius: 20px; font-size: 12px; color: var(--text-secondary); }
+.umd-cast-avatar   { width: 24px; height: 24px; border-radius: 50%; background: var(--brand-gradient); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0; } */
+
+/* Shows section */
+/* .umd-shows-section { padding: 56px 0 72px; }
+.umd-date-row      { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 36px; scrollbar-width: none; }
+.umd-date-row::-webkit-scrollbar { display: none; }
+.umd-date-btn      { flex-shrink: 0; padding: 12px 16px; border: 1px solid var(--border-dim); border-radius: var(--radius-md); background: transparent; cursor: pointer; text-align: center; display: flex; flex-direction: column; gap: 3px; min-width: 70px; transition: all .2s; }
+.umd-date-btn.active { border-color: var(--text-accent); background: rgba(var(--accent-rgb),.08); }
+.umd-date-btn:not(.active):hover { border-color: var(--border-mid); background: rgba(255,255,255,.03); }
+.umd-date-day      { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.umd-date-num      { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--text-primary); line-height: 1; }
+.umd-date-mon      { font-size: 10px; color: var(--text-muted); }
+.umd-date-btn.active .umd-date-day, .umd-date-btn.active .umd-date-num, .umd-date-btn.active .umd-date-mon { color: var(--text-accent); } */
+
+/* Theatre block */
+/* .umd-theatre-list  { display: flex; flex-direction: column; gap: 20px; }
+.umd-theatre-block { background: var(--bg-surface); border: 1px solid var(--border-dim); border-radius: var(--radius-lg); overflow: hidden; }
+.umd-theatre-block-header { padding: 20px 22px 16px; border-bottom: 1px solid var(--border-dim); }
+.umd-theatre-name  { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--text-primary); margin-bottom: 3px; }
+.umd-theatre-addr  { font-size: 12px; color: var(--text-muted); }
+.umd-shows-list    { padding: 16px 22px; display: flex; flex-direction: column; gap: 10px; }
+
+@media (max-width: 768px) {
+  .umd-hero-inner  { flex-direction: column; align-items: flex-start; gap: 24px; padding: 40px 0 36px; }
+  .umd-poster, .umd-poster-fallback { width: 140px; height: 200px; }
+  .umd-title       { font-size: 40px; }
+} */
+
+/* Hero */
+.umd-hero          { position: relative; min-height: 520px; overflow: hidden; display: flex; align-items: flex-end; }
+.umd-hero-bg       { position: absolute; inset: 0; background-size: cover; background-position: center top; }
+.umd-hero-blur     { position: absolute; inset: 0; backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); }
+.umd-hero-grad     { position: absolute; inset: 0; background: linear-gradient(105deg,rgba(8,8,8,.98) 0%,rgba(8,8,8,.8) 38%,rgba(8,8,8,.3) 65%,rgba(8,8,8,.1) 100%), linear-gradient(0deg,#080808 0%,rgba(8,8,8,.6) 30%,transparent 60%); }
+.umd-hero-inner    { position: relative; z-index: 1; display: flex; gap: 48px; align-items: flex-end; padding: 60px 0 52px; width: 100%; }
+
+/* Poster */
+.umd-poster-wrap   { flex-shrink: 0; position: relative; }
+.umd-poster        { width: 200px; height: 290px; object-fit: cover; border-radius: var(--radius-lg); box-shadow: 0 24px 64px rgba(var(--shadow-rgb),calc(.8 * var(--shadow-k))), 0 0 0 1px rgba(var(--fg-rgb),.07); display: block; }
+.umd-poster-fallback { width: 200px; height: 290px; border-radius: var(--radius-lg); background: var(--bg-elevated); display: flex; align-items: center; justify-content: center; font-size: 56px; border: 1px solid var(--border-dim); }
+.umd-cert          { position: absolute; top: -10px; right: -10px; width: 34px; height: 34px; border-radius: 8px; background: var(--text-accent); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #fff; box-shadow: 0 4px 14px rgba(var(--accent-rgb),.5); }
+
+/* Info */
+.umd-info          { flex: 1; padding-bottom: 4px; }
+.umd-badges        { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.umd-title         { font-family: 'Bebas Neue', sans-serif; font-size: clamp(46px,6.5vw,88px); line-height: .88; letter-spacing: 2px; color: var(--text-primary); margin-bottom: 12px; }
+.umd-director      { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; }
+.umd-director strong { color: var(--text-secondary); }
+.umd-meta-row      { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+.umd-meta-sep      { width: 1px; height: 16px; background: var(--border-mid); flex-shrink: 0; }
+.umd-meta-item     { font-size: 13px; color: var(--text-secondary); }
+.umd-desc          { font-size: 14px; line-height: 1.85; color: var(--text-muted); max-width: 560px; margin-bottom: 18px; font-style: italic; font-family: 'DM Serif Display', serif; }
+.umd-langs         { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.umd-lang          { padding: 4px 12px; background: var(--bg-surface); border: 1px solid var(--border-mid); border-radius: var(--radius-sm); font-size: 11px; color: var(--text-secondary); }
+.umd-cta-row       { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+
+/* Cast */
+/* .umd-cast          { } */
+.umd-cast-label    { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+.umd-cast-list     { display: flex; gap: 10px; flex-wrap: wrap; }
+.umd-cast-chip     { display: flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(var(--fg-rgb),.04); border: 1px solid var(--border-dim); border-radius: 20px; font-size: 12px; color: var(--text-secondary); }
+.umd-cast-avatar   { width: 24px; height: 24px; border-radius: 50%; background: var(--brand-gradient); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0; }
+
+/* Shows section */
+.umd-shows-section { padding: 56px 0 72px; }
+.umd-date-row      { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 36px; scrollbar-width: none; }
+.umd-date-row::-webkit-scrollbar { display: none; }
+.umd-date-btn      { flex-shrink: 0; padding: 12px 16px; border: 1px solid var(--border-dim); border-radius: var(--radius-md); background: transparent; cursor: pointer; text-align: center; display: flex; flex-direction: column; gap: 3px; min-width: 70px; transition: all .2s; }
+.umd-date-btn.active { border-color: var(--text-accent); background: rgba(var(--accent-rgb),.08); }
+.umd-date-btn:not(.active):hover { border-color: var(--border-mid); background: rgba(var(--fg-rgb),.03); }
+.umd-date-day      { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.umd-date-num      { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--text-primary); line-height: 1; }
+.umd-date-mon      { font-size: 10px; color: var(--text-muted); }
+.umd-date-btn.active .umd-date-day, .umd-date-btn.active .umd-date-num, .umd-date-btn.active .umd-date-mon { color: var(--text-accent); }
+
+/* Theatre block */
+.umd-theatre-list  { display: flex; flex-direction: column; gap: 20px; }
+.umd-theatre-block { background: var(--bg-surface); border: 1px solid var(--border-dim); border-radius: var(--radius-lg); overflow: hidden; }
+.umd-theatre-block-header { padding: 20px 22px 16px; border-bottom: 1px solid var(--border-dim); }
+.umd-theatre-name  { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--text-primary); margin-bottom: 3px; }
+.umd-theatre-addr  { font-size: 12px; color: var(--text-muted); }
+.umd-shows-list    { padding: 16px 22px; display: flex; flex-direction: column; gap: 10px; }
+
+@media (max-width: 768px) {
+  .umd-hero-inner  { flex-direction: column; align-items: flex-start; gap: 24px; padding: 40px 0 36px; }
+  .umd-poster, .umd-poster-fallback { width: 140px; height: 200px; }
+  .umd-title       { font-size: 40px; }
+}
+
+/* ── THEATRE DETAIL PAGE ─────────────────────────────────── */
+.td-hero {
+  padding: 100px 0 48px;
+  background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(var(--accent-rgb),0.06));
+  border-bottom: 1px solid var(--border-dim);
+}
+.td-hero-inner {
+  display: flex; gap: 28px; align-items: flex-start;
+}
+.td-hero-icon {
+  width: 80px; height: 80px; border-radius: 18px;
+  background: rgba(168,85,247,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px; flex-shrink: 0;
+  border: 1px solid rgba(168,85,247,0.2);
+}
+.td-hero-info { flex: 1; }
+.td-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 6vw, 72px);
+  letter-spacing: 3px; line-height: 1;
+  color: var(--text-primary); margin-bottom: 10px;
+}
+.td-location {
+  font-size: 14px; color: var(--text-accent);
+  font-weight: 600; margin-bottom: 8px;
+}
+.td-desc {
+  font-size: 13px; color: var(--text-muted);
+  line-height: 1.7; max-width: 600px; margin-bottom: 16px;
+}
+.td-meta-row {
+  display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 14px;
+}
+.td-meta-item {
+  font-size: 13px; color: var(--text-secondary);
+}
+.td-meta-item strong { color: var(--text-primary); }
+.td-amenities { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Shows by movie */
+.td-shows-section { padding: 48px 0 72px; }
+.td-movie-block {
+  background: var(--bg-card); border: 1px solid var(--border-dim);
+  border-radius: var(--radius-lg); overflow: hidden;
+  margin-bottom: 24px; transition: border-color .2s;
+}
+.td-movie-block:hover { border-color: var(--border-mid); }
+.td-movie-header {
+  display: flex; gap: 14px; align-items: center;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--border-dim);
+  background: rgba(var(--fg-rgb),0.02);
+  cursor: pointer; transition: background .15s;
+}
+.td-movie-header:hover { background: rgba(var(--fg-rgb),0.04); }
+.td-movie-poster {
+  width: 46px; height: 66px; object-fit: cover;
+  border-radius: 6px; flex-shrink: 0;
+}
+.td-movie-name {
+  font-weight: 800; font-size: 16px; color: var(--text-primary);
+}
+.td-movie-meta {
+  font-size: 12px; color: var(--text-muted); margin-top: 3px;
+}
+.td-movie-link {
+  margin-left: auto; font-size: 12px; color: var(--text-accent);
+  white-space: nowrap;
+}
+.td-show-slots {
+  padding: 18px 22px;
+  display: flex; flex-wrap: wrap; gap: 12px;
+}
+.td-show-slot {
+  background: rgba(var(--accent-rgb),0.06);
+  border: 1px solid rgba(var(--accent-rgb),0.2);
+  border-radius: 10px; padding: 12px 16px;
+  cursor: pointer; text-align: left; min-width: 130px;
+  transition: all .15s;
+}
+.td-show-slot:hover:not(:disabled) {
+  background: rgba(var(--accent-rgb),0.12);
+  border-color: rgba(var(--accent-rgb),0.4);
+  transform: translateY(-2px);
+}
+.td-show-slot:disabled {
+  opacity: 0.45; cursor: not-allowed;
+  background: rgba(var(--fg-rgb),0.03);
+  border-color: var(--border-dim);
+}
+.td-show-time {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px; color: var(--text-primary); line-height: 1;
+}
+.td-show-format {
+  font-size: 11px; color: var(--text-accent); margin-top: 3px;
+}
+.td-show-avail { font-size: 11px; margin-top: 6px; }
+.td-show-avail.full    { color: var(--red); }
+.td-show-avail.low     { color: var(--yellow); }
+.td-show-avail.avail   { color: var(--green); }
+.td-show-bar {
+  margin-top: 6px; height: 2px;
+  background: var(--border-dim); border-radius: 1px; overflow: hidden;
+}
+.td-show-bar-fill { height: 100%; border-radius: 1px; }
+
+@media (max-width: 640px) {
+  .td-hero-inner { flex-direction: column; }
+  .td-hero-icon  { width: 56px; height: 56px; font-size: 26px; }
+  .td-title      { font-size: 36px; }
+}
+
+/* ── THEATRE DETAIL — Gallery ───────────────────────────── */
+.td-section-label {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--text-accent); font-weight: 700; margin-bottom: 8px; margin-top: 40px;
+}
+.td-section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 4vw, 44px); letter-spacing: 2px;
+  color: var(--text-primary); margin-bottom: 24px;
+}
+
+/* Image gallery */
+.td-gallery-main {
+  width: 100%; border-radius: 14px; overflow: hidden;
+  aspect-ratio: 16/7; background: var(--bg-elevated);
+  margin-bottom: 12px;
+}
+.td-gallery-main-img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .4s ease;
+}
+.td-gallery-main:hover .td-gallery-main-img { transform: scale(1.02); }
+
+.td-gallery-thumbs {
+  display: flex; gap: 10px; overflow-x: auto;
+  padding-bottom: 4px; scrollbar-width: none;
+}
+.td-gallery-thumbs::-webkit-scrollbar { display: none; }
+.td-gallery-thumb {
+  flex-shrink: 0; width: 90px; height: 60px;
+  border-radius: 8px; overflow: hidden;
+  border: 2px solid transparent; cursor: pointer;
+  transition: border-color .15s, opacity .15s;
+  opacity: 0.6; padding: 0; background: none;
+}
+.td-gallery-thumb.active  { border-color: var(--text-accent); opacity: 1; }
+.td-gallery-thumb:hover   { opacity: 1; }
+.td-gallery-thumb img     { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Movies grid */
+.td-movies-section { padding: 8px 0 40px; border-bottom: 1px solid var(--border-dim); }
+.td-movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 14px;
+}
+.td-movie-card {
+  border-radius: 10px; overflow: hidden; cursor: pointer;
+  background: var(--bg-card); border: 1px solid var(--border-dim);
+  transition: transform .25s, border-color .2s;
+}
+.td-movie-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(var(--fg-rgb),.15);
+}
+.td-movie-card-poster {
+  position: relative; padding-top: 145%; overflow: hidden;
+}
+.td-movie-card-poster img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .4s ease;
+}
+.td-movie-card:hover .td-movie-card-poster img { transform: scale(1.04); }
+.td-movie-card-fallback {
+  position: absolute; inset: 0; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 32px; background: var(--bg-elevated);
+}
+.td-movie-card-grad {
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(8,8,8,.8) 0%, transparent 50%);
+}
+.td-movie-card-rating {
+  position: absolute; top: 8px; right: 8px;
+  display: flex; align-items: center; gap: 3px;
+  background: rgba(0,0,0,.75); backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 5px; padding: 3px 7px;
+  font-size: 11px; font-weight: 800; color: #fff;
+}
+.td-movie-card-cert {
+  position: absolute; top: 8px; left: 8px;
+  padding: 2px 6px; border-radius: 4px;
+  background: rgba(0,0,0,.75); backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.2);
+  font-size: 9px; font-weight: 900; color: #fff;
+  text-transform: uppercase; letter-spacing: .8px;
+}
+.td-movie-card-info { padding: 10px 10px 12px; }
+.td-movie-card-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px; letter-spacing: .8px; color: var(--text-primary);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-bottom: 3px;
+}
+.td-movie-card-meta { font-size: 10px; color: var(--text-muted); }
+
+/* Add on */
+.umdp-shows        { padding: 56px 0 72px; }
+.umdp-theatre-list { display: flex; flex-direction: column; gap: 20px; }
+.umdp-not-open { padding: 48px 0 24px; }
+.umdp-not-open-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }

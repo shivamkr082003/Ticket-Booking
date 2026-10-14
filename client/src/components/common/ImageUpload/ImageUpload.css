@@ -1,0 +1,29 @@
+.iu-wrap          { display: flex; flex-direction: column; gap: 8px; }
+.iu-label-row     { display: flex; align-items: center; justify-content: space-between; }
+.iu-optional      { font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 11px; color: var(--text-muted); margin-left: 4px; }
+
+/* Mode toggle */
+.iu-mode-toggle   { display: flex; gap: 4px; }
+.iu-mode-btn      { padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; border: 1px solid var(--border-dim); color: var(--text-muted); background: transparent; cursor: pointer; transition: all .15s; }
+.iu-mode-btn.active { border-color: var(--text-accent); color: var(--text-accent); background: rgba(var(--accent-rgb),.1); }
+
+/* Preview */
+.iu-preview       { position: relative; border-radius: 8px; overflow: hidden; background: var(--bg-elevated); border: 1px solid var(--border-dim); }
+.iu-preview img   { width: 100%; height: 100%; object-fit: cover; display: block; }
+.iu-remove        { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,.7); border: none; border-radius: 50%; width: 24px; height: 24px; color: #fff; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+/* Dropzone */
+.iu-dropzone      { border: 2px dashed var(--border-dim); border-radius: 10px; padding: 28px; text-align: center; cursor: pointer; transition: all .2s; background: rgba(var(--fg-rgb),.02); }
+.iu-dropzone:hover { border-color: var(--text-accent); background: rgba(var(--accent-rgb),.03); }
+.iu-dropzone.uploading { cursor: not-allowed; border-color: var(--border-mid); }
+.iu-dropzone-icon { font-size: 28px; margin-bottom: 8px; }
+.iu-dropzone-text { font-size: 13px; color: var(--text-secondary); font-weight: 600; margin-bottom: 4px; }
+.iu-dropzone-sub  { font-size: 11px; color: var(--text-muted); }
+.iu-uploading     { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.iu-uploading p   { font-size: 13px; color: var(--text-muted); }
+
+/* URL mode */
+.iu-url-row       { display: flex; gap: 8px; }
+.iu-url-row .form-input { flex: 1; }
+
+.iu-error         { font-size: 12px; color: var(--red); }

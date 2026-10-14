@@ -1,0 +1,45 @@
+.bkc {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 20px; border-radius: 14px;
+  background: var(--bg-card); border: 1px solid var(--border-dim);
+  transition: border-color .2s;
+}
+.bkc:hover           { border-color: var(--border-mid); }
+.bkc--green          { border-left: 3px solid #22c55e; }
+.bkc--yellow         { border-left: 3px solid #f59e0b; }
+.bkc--red            { border-left: 3px solid #ef4444; opacity: .75; }
+
+/* Poster */
+.bkc-poster-wrap     { flex-shrink: 0; }
+.bkc-poster          { width: 60px; height: 86px; object-fit: cover; border-radius: 8px; display: block; }
+.bkc-poster-fallback { width: 60px; height: 86px; border-radius: 8px; background: var(--bg-elevated); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+
+/* Info */
+.bkc-info            { flex: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.bkc-top             { display: flex; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+.bkc-movie           { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; color: var(--text-primary); line-height: 1; }
+.bkc-theatre         { font-size: 13px; color: var(--text-muted); }
+.bkc-meta            { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-secondary); flex-wrap: wrap; }
+.bkc-sep             { width: 3px; height: 3px; border-radius: 50%; background: var(--border-mid); }
+.bkc-seats           { display: flex; gap: 5px; flex-wrap: wrap; }
+.bkc-seat-tag        { padding: 2px 8px; border-radius: 5px; font-size: 11px; font-weight: 700; background: rgba(var(--fg-rgb),.05); border: 1px solid var(--border-dim); color: var(--text-secondary); }
+.bkc-ticket-code     { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
+
+/* Right */
+.bkc-right           { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.bkc-amount          { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--text-primary); letter-spacing: 1px; }
+.bkc-date            { font-size: 11px; color: var(--text-muted); }
+.bkc-actions         { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; margin-top: 4px; }
+.bkc-cancel-btn      { color: var(--red) !important; border-color: rgba(239,68,68,.3) !important; }
+.bkc-cancel-btn:hover { background: rgba(239,68,68,.08) !important; }
+
+@media (max-width: 600px) {
+  .bkc        { flex-wrap: wrap; }
+  .bkc-right  { width: 100%; flex-direction: row; justify-content: space-between; align-items: center; }
+}
+.bkc-seat-group  { display: inline-flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.bkc-seat-cat    { font-size: 10.5px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; color: var(--text-muted); margin-right: 2px; }
+.bkc-refund      { font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 8px; width: fit-content; }
+.bkc-refund--ok   { color: var(--green);  background: rgba(47,191,113,.1); }
+.bkc-refund--wait { color: var(--yellow); background: rgba(251,191,36,.1); }
+.bkc-refund--bad  { color: var(--red);    background: rgba(239,68,68,.1); }

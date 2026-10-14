@@ -1,0 +1,10 @@
+.sc-card  {
+  background: var(--bg-card); border: 1px solid var(--border-dim);
+  border-radius: var(--radius-lg); padding: 18px 20px;
+  display: flex; align-items: center; gap: 14px;
+  transition: all .2s;
+}
+.sc-card:hover { border-color: var(--border-mid); transform: translateY(-2px); box-shadow: var(--shadow-card); }
+.sc-icon  { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.sc-value { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 1px; line-height: 1; }
+.sc-label { font-size: 11px; color: var(--text-muted); margin-top: 3px; }

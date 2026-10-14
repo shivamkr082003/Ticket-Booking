@@ -1,0 +1,42 @@
+name: CI
+
+# Runs automatically on every push and every pull request targeting main.
+# This is what turns "we wrote tests" into "tests are actually enforced" —
+# nobody has to remember to run them locally before merging.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Run server test suite
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: server
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: server/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        # booking.service.test.js uses mongodb-memory-server, which downloads
+        # a real MongoDB binary on first run — GitHub's runners have normal
+        # internet access, so this works here even though it couldn't run in
+        # a sandboxed environment with restricted network access.
+        run: npm test
+        env:
+          STRIPE_SECRET_KEY: sk_test_ci_placeholder_key

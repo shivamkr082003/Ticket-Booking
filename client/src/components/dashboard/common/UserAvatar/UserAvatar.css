@@ -1,0 +1,8 @@
+.ua {
+  border-radius: 50%; background: var(--brand-gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; color: #fff; flex-shrink: 0;
+}
+.ua--sm { width: 28px; height: 28px; font-size: 11px; }
+.ua--md { width: 36px; height: 36px; font-size: 14px; }
+.ua--lg { width: 48px; height: 48px; font-size: 18px; }

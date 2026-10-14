@@ -1,0 +1,67 @@
+.cinemas-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+
+.cinema-card {
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; gap: 16px;
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-dim);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition: border-color .25s, transform .35s var(--ease-out), box-shadow .35s;
+}
+.cinema-card:hover,
+.cinema-card:focus-visible { border-color: var(--border-accent); transform: translateY(-5px); box-shadow: var(--shadow-lift); }
+.cinema-card.skeleton { border: none; box-shadow: none; }
+
+.cinema-glow {
+  position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--accent-rgb),.1) 0%, transparent 70%);
+  pointer-events: none; opacity: .7; transition: opacity .3s;
+}
+.cinema-card:hover .cinema-glow { opacity: 1; }
+
+.cinema-cover     { margin: -24px -24px 0; height: 160px; overflow: hidden; position: relative; }
+.cinema-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease-out); }
+.cinema-card:hover .cinema-cover img { transform: scale(1.05); }
+.cinema-cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,4,18,.35), transparent 60%); }
+.cinema-head      { display: flex; align-items: flex-start; gap: 14px; }
+.cinema-icon      { width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; background: rgba(var(--accent-rgb),.1); border: 1px solid rgba(var(--accent-rgb),.2); }
+.cinema-head-text { flex: 1; min-width: 0; }
+.cinema-name      { font-family: 'Bebas Neue', sans-serif; font-size: 23px; letter-spacing: .8px; line-height: 1.05; color: var(--text-primary); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cinema-loc       { font-size: 12px; color: var(--text-muted); }
+
+.cinema-screens-box   { text-align: right; flex-shrink: 0; }
+.cinema-screens-num   { font-family: 'Bebas Neue', sans-serif; font-size: 30px; line-height: 1; color: var(--text-primary); }
+.cinema-screens-label { font-size: 9.5px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-muted); }
+
+.cinema-formats   { display: flex; gap: 6px; flex-wrap: wrap; }
+.cinema-no-shows  { font-size: 12px; color: var(--text-muted); font-style: italic; }
+
+.cinema-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.cinema-tag  { padding: 3px 10px; border-radius: 999px; font-size: 10.5px; font-weight: 600; color: var(--text-secondary); background: rgba(var(--fg-rgb), .04); border: 1px solid var(--border-dim); }
+
+.cinema-foot    { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border-dim); }
+.cinema-address { font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.btn-dir {
+  flex-shrink: 0;
+  padding: 8px 14px; border-radius: 10px;
+  font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--text-accent); background: rgba(var(--accent-rgb),.08); border: 1px solid var(--border-accent);
+  transition: background .2s, box-shadow .2s;
+}
+.btn-dir:hover { background: rgba(var(--accent-rgb),.14); box-shadow: 0 6px 18px rgba(var(--accent-rgb),.18); }
+
+/* ===== Medium screens (tablets) ===== */
+@media (max-width: 1024px) {
+  .cinemas-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+}
+
+/* ===== Small screens (mobile) ===== */
+@media (max-width: 640px) {
+  .cinemas-grid { grid-template-columns: 1fr; gap: 14px; }
+  .cinema-card  { padding: 18px; }
+  .cinema-cover { margin: -18px -18px 0; }
+  .cinema-name  { font-size: 20px; }
+}

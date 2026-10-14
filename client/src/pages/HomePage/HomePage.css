@@ -1,0 +1,36 @@
+/* Shared rhythm for every landing-page section */
+.home-page { overflow-x: clip; }
+
+.home-section {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 96px 56px 0;
+}
+
+/* Horizontal scroll rows (Now Showing, Coming Soon) */
+.movies-row-wrap { position: relative; }
+.row-arrow {
+  position: absolute; top: 38%; z-index: 5;
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; line-height: 1; padding-bottom: 3px;
+  background: var(--bg-elevated); color: var(--text-primary);
+  border: 1px solid var(--border-mid); box-shadow: var(--shadow-lift);
+  opacity: 0; transition: opacity .25s, transform .25s var(--ease-out), border-color .2s;
+}
+.row-arrow:hover { border-color: var(--border-accent); color: var(--text-accent); }
+.row-arrow--left  { left: -22px; }
+.row-arrow--right { right: -22px; }
+.movies-row-wrap:hover .row-arrow { opacity: 1; }
+
+@media (max-width: 1024px) {
+  .home-section { padding: 80px 32px 0; }
+}
+
+@media (max-width: 768px) {
+  .row-arrow { display: none; }
+}
+
+@media (max-width: 640px) {
+  .home-section { padding: 64px 20px 0; }
+}

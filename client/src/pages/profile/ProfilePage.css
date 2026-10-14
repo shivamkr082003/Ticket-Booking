@@ -1,0 +1,85 @@
+.pfp-container  { padding: 48px 0 80px; max-width: 780px; margin: 0 auto; }
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.pfp-hero       { display: flex; align-items: center; gap: 28px; margin-bottom: 28px; flex-wrap: wrap; }
+
+/* Avatar */
+.pfp-avatar-wrap {
+  position: relative; flex-shrink: 0;
+  width: 88px; height: 88px;
+}
+.pfp-avatar-img {
+  width: 88px; height: 88px; border-radius: 50%;
+  object-fit: cover; display: block;
+}
+.pfp-avatar-fallback {
+  width: 88px; height: 88px; border-radius: 50%;
+  background: var(--brand-gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 34px; font-weight: 800; color: #fff;
+}
+.pfp-avatar-ring {
+  position: absolute; inset: -3px; border-radius: 50%;
+  border: 2px solid transparent;
+  background: var(--brand-gradient) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Hero info */
+.pfp-hero-info  { flex: 1; }
+.pfp-name       { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,5vw,52px); letter-spacing: 2px; color: var(--text-primary); line-height: 1; margin-bottom: 6px; }
+.pfp-email      { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
+.pfp-phone      { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.pfp-badges     { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.pfp-joined     { font-size: 11px; color: var(--text-muted); }
+
+/* ── Stats ─────────────────────────────────────────────────── */
+.pfp-stats      {
+  display: flex; background: var(--bg-card);
+  border: 1px solid var(--border-dim); border-radius: 14px;
+  overflow: hidden; margin-bottom: 28px;
+}
+.pfp-stat       { flex: 1; padding: 18px 20px; border-right: 1px solid var(--border-dim); text-align: center; }
+.pfp-stat:last-child { border-right: none; }
+.pfp-stat-val   { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; color: var(--text-primary); }
+.pfp-stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; }
+
+/* ── Tabs ──────────────────────────────────────────────────── */
+.pfp-tabs       { display: flex; gap: 4px; border-bottom: 1px solid var(--border-dim); margin-bottom: 28px; overflow-x: auto; scrollbar-width: none; }
+.pfp-tabs::-webkit-scrollbar { display: none; }
+.pfp-tab        { padding: 10px 22px; font-size: 13px; font-weight: 600; color: var(--text-muted); background: transparent; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: all .18s; margin-bottom: -1px; white-space: nowrap; }
+.pfp-tab.active { color: var(--text-accent); border-bottom-color: var(--text-accent); }
+.pfp-tab:not(.active):hover { color: var(--text-secondary); }
+
+/* ── Panel ─────────────────────────────────────────────────── */
+.pfp-panel         { background: var(--bg-card); border: 1px solid var(--border-dim); border-radius: 14px; padding: 28px; }
+.pfp-panel-title   { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 22px; }
+.pfp-panel-header  { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+.pfp-panel-header .pfp-panel-title { margin-bottom: 0; }
+
+/* Avatar edit preview */
+.pfp-avatar-edit       { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; padding: 16px; background: rgba(var(--fg-rgb),.03); border-radius: 10px; border: 1px solid var(--border-dim); }
+.pfp-avatar-preview    { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; background: var(--brand-gradient); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: #fff; flex-shrink: 0; }
+.pfp-avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
+.pfp-avatar-edit-label { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+.pfp-avatar-edit-sub   { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
+/* Form */
+.pfp-form       { display: flex; flex-direction: column; gap: 16px; max-width: 480px; }
+.pfp-optional   { font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 11px; color: var(--text-muted); margin-left: 4px; }
+.pfp-readonly   { font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 11px; color: var(--text-muted); margin-left: 4px; }
+.pfp-pw-error   { font-size: 13px; color: var(--red); }
+
+/* Bookings list */
+.pfp-bookings-list { display: flex; flex-direction: column; gap: 14px; }
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .pfp-stats  { flex-wrap: wrap; }
+  .pfp-stat   { flex: 1 1 45%; border-bottom: 1px solid var(--border-dim); }
+  .pfp-hero   { gap: 18px; }
+  .pfp-name   { font-size: 32px; }
+}
