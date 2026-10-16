@@ -20,6 +20,8 @@
 
 > A full-stack movie booking platform inspired by BookMyShow — featuring real-time seat selection with Redis-backed locking, atomic booking transactions, Stripe payments, OTP-based email verification, and a role-based admin ecosystem. Containerized with Docker, tested with Vitest, load-tested with k6, and deployed with a CI pipeline on every push.
 
+**[🚀 Live Demo](https://cineverse-eight-theta.vercel.app) · [⚙️ Backend API](https://cineverse-api-shivam.onrender.com/health) · [📊 Performance Benchmarks](./PERFORMANCE.md)**
+
 </div>
 
 ---
@@ -305,7 +307,7 @@ sequenceDiagram
 | **Render** | Backend hosting (persistent process — required for Socket.io/WebSockets) |
 | **Vercel** | Frontend hosting (static build) |
 | **MongoDB Atlas** | Managed database |
-| **Upstash** | Managed Redis (production) |
+| **Redis Cloud** | Managed Redis (production) |
 | **UptimeRobot** | Keeps the free-tier backend warm via periodic health checks |
 
 ---
@@ -504,7 +506,7 @@ Gmail account with App Password enabled
 ```env
 PORT=3000
 MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/cineverse
-REDIS_URL=redis://localhost:6379          # or your Upstash URL in production
+REDIS_URL=redis://localhost:6379          # or your Redis Cloud URL in production
 AUTH_KEY=your_super_secret_jwt_key_min_32_chars
 
 # Stripe (test mode)
@@ -591,7 +593,7 @@ flowchart LR
     U[User Browser] -->|Static build| V["Vercel - Frontend"]
     V -->|REST + WebSocket| R["Render - Backend, persistent process"]
     R -->|Mongoose| A["MongoDB Atlas"]
-    R -->|TLS| UP["Upstash - Managed Redis"]
+    R -->|TLS| UP["Redis Cloud - Managed Redis"]
     UR["UptimeRobot - pings /health every 5min"] -.->|keeps warm| R
 ```
 
@@ -733,7 +735,7 @@ Honest list of what's next, in priority order:
 - [ ] **Socket.io authentication** — connections are currently unauthenticated; next step is verifying JWT on socket handshake
 - [ ] **Structured logging** — replace `console.log`/`console.error` with a proper logger (levels, JSON output) for production observability
 - [ ] **Broader test coverage** — integration tests currently cover the booking flow (highest risk); auth, movies, and theatres are next
-- [ ] **Self-hosted Redis on a private network** — currently uses Upstash over the public internet; a same-platform private-network Redis (e.g. a Render private service) would reduce latency further
+- [ ] **Self-hosted Redis on a private network** — currently uses Redis Cloud over the public internet; a same-platform private-network Redis (e.g. a Render private service) would reduce latency further
 - [ ] **Refactor shared response objects** — `errorResponseBody`/`successResponseBody` are currently shared mutable objects; safe under current usage but should become factory functions to remove the footgun
 
 ---

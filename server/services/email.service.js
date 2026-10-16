@@ -15,15 +15,28 @@ const getTransporter = () => {
   return _transporter;
 };
 
+// "Cineverse <hello@x.com>" → { name, email }
+const parseFrom = (from) => {
+  const m = /^\s*(.*?)\s*<([^>]+)>\s*$/.exec(from);
+  return m ? { name: m[1] || "Cineverse", email: m[2] } : { name: "Cineverse", email: from.trim() };
+};
+
+// Brevo's HTTP API — for hosts that block outbound SMTP (e.g. Render's free tier)
+const sendViaBrevo = async ({ from, to, subject, html }) => {
+  const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: { "api-key": process.env.BREVO_API_KEY, "content-type": "application/json", accept: "application/json" },
+    body: JSON.stringify({ sender: parseFrom(from), to: [{ email: to }], subject, htmlContent: html }),
+  });
+  if (!res.ok) throw new Error(`Brevo ${res.status}: ${await res.text()}`);
+};
+
 // ── Shared sender ─────────────────────────────────────────
 const sendEmail = async ({ to, subject, html }) => {
   try {
-    await getTransporter().sendMail({
-      from: process.env.EMAIL_FROM ?? `Cineverse <${process.env.EMAIL_USER}>`,
-      to,
-      subject,
-      html,
-    });
+    const from = process.env.EMAIL_FROM ?? `Cineverse <${process.env.EMAIL_USER}>`;
+    if (process.env.BREVO_API_KEY) await sendViaBrevo({ from, to, subject, html });
+    else await getTransporter().sendMail({ from, to, subject, html });
     console.log(`📧 Email sent to ${to}`);
   } catch (err) {
     console.error("❌ Email failed:", err.message);
