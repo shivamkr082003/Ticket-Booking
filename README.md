@@ -14,13 +14,11 @@
 [![Stripe](https://img.shields.io/badge/Stripe-635BFF?style=for-the-badge&logo=stripe&logoColor=white)](https://stripe.com)
 [![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white)](https://cloudinary.com)
 
-[![CI](https://github.com/AmanBhaskar16/Ticket-Booking-Platform/actions/workflows/ci.yml/badge.svg)](https://github.com/AmanBhaskar16/Ticket-Booking-Platform/actions/workflows/ci.yml)
+[![CI](https://github.com/shivamkr082003/Ticket-Booking/actions/workflows/ci.yml/badge.svg)](https://github.com/shivamkr082003/Ticket-Booking/actions/workflows/ci.yml)
 [![Vitest](https://img.shields.io/badge/tested_with-vitest-6E9F18?style=flat-square&logo=vitest&logoColor=white)](https://vitest.dev)
 [![k6](https://img.shields.io/badge/load_tested-k6-7D64FF?style=flat-square&logo=k6&logoColor=white)](https://k6.io)
 
 > A full-stack movie booking platform inspired by BookMyShow — featuring real-time seat selection with Redis-backed locking, atomic booking transactions, Stripe payments, OTP-based email verification, and a role-based admin ecosystem. Containerized with Docker, tested with Vitest, load-tested with k6, and deployed with a CI pipeline on every push.
-
-**[🚀 Live Demo](https://ticket-booking-platform-bice.vercel.app) · [⚙️ Backend API](https://ticket-booking-platform-qctm.onrender.com/health) · [📊 Performance Benchmarks](./PERFORMANCE.md)**
 
 </div>
 
@@ -535,8 +533,8 @@ VITE_STRIPE_PUBLISHABLE_KEY=pk_test_51...
 
 #### Option A — Docker (recommended, one command)
 ```bash
-git clone https://github.com/AmanBhaskar16/Ticket-Booking-Platform.git
-cd Ticket-Booking-Platform
+git clone https://github.com/shivamkr082003/Ticket-Booking.git
+cd Ticket-Booking
 cp .env.example .env
 cp server/.env.example server/.env    # fill in real values
 docker compose up --build
@@ -547,8 +545,8 @@ Spins up the server, client, and Redis in one command. MongoDB is read from your
 
 #### Option B — Manual
 ```bash
-git clone https://github.com/AmanBhaskar16/Ticket-Booking-Platform.git
-cd Ticket-Booking-Platform
+git clone https://github.com/shivamkr082003/Ticket-Booking.git
+cd Ticket-Booking
 
 cd server && npm install && npm run dev     # :3000 — needs local/Atlas Mongo + local/hosted Redis
 
@@ -766,17 +764,15 @@ git push origin feature/your-feature
 
 ## 📄 License
 
-MIT © [Aman Bhaskar](https://github.com/AmanBhaskar16)
+MIT © [Shivam Kumar](https://github.com/shivamkr082003)
 
 ---
 
 <div align="center">
 
-**Built by Aman Bhaskar · IIIT Ranchi**
+**Built by Shivam Kumar**
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-aman--bhaskar-0A66C2?style=flat-square&logo=linkedin)](https://linkedin.com/in/aman-bhaskar-1086a9269)
-[![GitHub](https://img.shields.io/badge/GitHub-AmanBhaskar16-181717?style=flat-square&logo=github)](https://github.com/AmanBhaskar16)
-[![LeetCode](https://img.shields.io/badge/LeetCode-600%2B%20Solved%20·%201752%20Rating-FFA116?style=flat-square&logo=leetcode)](https://leetcode.com/u/Aman_Bhaskar16/)
+[![GitHub](https://img.shields.io/badge/GitHub-shivamkr082003-181717?style=flat-square&logo=github)](https://github.com/shivamkr082003)
 
 </div>
 # Ticket-Booking
