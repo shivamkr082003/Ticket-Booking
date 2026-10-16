@@ -627,7 +627,7 @@ const getListVersion = async () => (await redisClient.get(LIST_VERSION_KEY)) ?? 
 const buildListKey = (version, filter) => `cache:movies:list:v${version}:${hashOf(filter)}`;
 export const invalidateMovieListCache = () => redisClient.incr(LIST_VERSION_KEY);
 ```
-Cut p95 latency on the movie list endpoint by ~10x under realistic mixed traffic — see [`PERFORMANCE.md`](./PERFORMANCE.md).
+Cut p95 latency on the movie list endpoint by ~8.5x under realistic mixed traffic — see [`PERFORMANCE.md`](./PERFORMANCE.md).
 
 ### 3. TTL-Based Seat Locks Instead of In-Memory State
 
@@ -688,16 +688,16 @@ export const parseError = (error) => {
 
 ### Measured impact of the Redis caching layer
 
-Load-tested locally with [k6](https://k6.io) against `GET /api/v1/movies` (Docker Compose, local Redis) — full methodology and reproduction steps in [`PERFORMANCE.md`](./PERFORMANCE.md).
+Load-tested locally with [k6](https://k6.io) against `GET /api/v1/movies` (local server, Redis 7 in Docker, MongoDB Atlas) — full methodology and reproduction steps in [`PERFORMANCE.md`](./PERFORMANCE.md).
 
 | Metric | Cache miss (MongoDB) | Realistic mixed traffic | Cache hit (Redis) |
 |---|---:|---:|---:|
-| p95 latency | 588ms | **57ms** | 12.6ms |
-| Throughput | 51 req/s | 218 req/s | 147 req/s |
+| p95 latency | 592ms | **70ms** | 7.1ms |
+| Throughput | 51 req/s | 214 req/s | 150 req/s |
 
-**~10x p95 latency reduction under realistic (80/20) mixed traffic; ~47x in the best case.** Zero errors across all load scenarios.
+**~8.5x p95 latency reduction under realistic (80/20) mixed traffic; ~83x in the best case.** Zero errors across all load scenarios.
 
-> Production uses a hosted Redis (Upstash) reached over the internet rather than a same-network Docker container, so absolute production latency differs from these local benchmarks — the architectural pattern and relative improvement are unaffected. See `PERFORMANCE.md` for the full caveat.
+> Redis ran on the same machine, while every cache miss travels to a cloud Atlas cluster, so absolute numbers will differ in other setups. Throughput is capped by the test's think time, so compare latency, not req/s. See `PERFORMANCE.md` for the full caveats.
 
 ### Other production concerns
 
@@ -759,12 +759,6 @@ git commit -m "feat: describe your change"
 git push origin feature/your-feature
 # Open a Pull Request
 ```
-
----
-
-## 📄 License
-
-MIT © [Shivam Kumar](https://github.com/shivamkr082003)
 
 ---
 

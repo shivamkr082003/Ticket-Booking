@@ -44,6 +44,8 @@ const generalLimiter = rateLimit({
     limit:    300,             // 300 requests per IP per window
     standardHeaders: true,
     legacyHeaders:   false,
+    // k6 runs (see PERFORMANCE.md) send thousands of requests from one IP
+    skip: () => process.env.LOAD_TEST === "true",
 });
 app.use(generalLimiter);
 
