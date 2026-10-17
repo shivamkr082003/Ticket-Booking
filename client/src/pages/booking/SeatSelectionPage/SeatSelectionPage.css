@@ -2,8 +2,8 @@
 .ssp-header     { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 36px; }
 .ssp-title      { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px,4vw,48px); letter-spacing: 2px; color: var(--text-primary); line-height: 1; }
 .ssp-sub        { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
-.ssp-layout     { display: grid; grid-template-columns: 1fr 320px; gap: 40px; align-items: start; }
-.ssp-grid-wrap  { background: var(--bg-card); border: 1px solid var(--border-dim); border-radius: 16px; padding: 32px 24px; }
+.ssp-layout     { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: start; }
+.ssp-grid-wrap  { background: var(--bg-card); border: 1px solid var(--border-dim); border-radius: 16px; padding: 32px 24px; min-width: 0; }
 .ssp-summary-wrap { position: sticky; top: calc(var(--nav-h) + 20px); }
 
 @media (max-width: 900px) {
