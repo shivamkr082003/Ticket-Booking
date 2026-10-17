@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import MailComposer from "nodemailer/lib/mail-composer/index.js";
 
 // ── Transporter ───────────────────────────────────────────
 let _transporter = null;
@@ -15,27 +16,43 @@ const getTransporter = () => {
   return _transporter;
 };
 
-// "Cineverse <hello@x.com>" → { name, email }
-const parseFrom = (from) => {
-  const m = /^\s*(.*?)\s*<([^>]+)>\s*$/.exec(from);
-  return m ? { name: m[1] || "Cineverse", email: m[2] } : { name: "Cineverse", email: from.trim() };
+// ── Gmail API over HTTPS ──────────────────────────────────
+// For hosts that block outbound SMTP (e.g. Render's free tier).
+// Needs an OAuth client + refresh token with the gmail.send scope.
+let _gmailToken = { value: null, expiresAt: 0 };
+const gmailAccessToken = async () => {
+  if (_gmailToken.value && Date.now() < _gmailToken.expiresAt - 60_000) return _gmailToken.value;
+  const res = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "content-type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      client_id:     process.env.GMAIL_CLIENT_ID,
+      client_secret: process.env.GMAIL_CLIENT_SECRET,
+      refresh_token: process.env.GMAIL_REFRESH_TOKEN,
+      grant_type:    "refresh_token",
+    }),
+  });
+  if (!res.ok) throw new Error(`Gmail token ${res.status}: ${await res.text()}`);
+  const { access_token, expires_in } = await res.json();
+  _gmailToken = { value: access_token, expiresAt: Date.now() + expires_in * 1000 };
+  return access_token;
 };
 
-// Brevo's HTTP API — for hosts that block outbound SMTP (e.g. Render's free tier)
-const sendViaBrevo = async ({ from, to, subject, html }) => {
-  const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+const sendViaGmailApi = async ({ from, to, subject, html }) => {
+  const raw = await new MailComposer({ from, to, subject, html }).compile().build();
+  const res = await fetch("https://gmail.googleapis.com/gmail/v1/users/me/messages/send", {
     method: "POST",
-    headers: { "api-key": process.env.BREVO_API_KEY, "content-type": "application/json", accept: "application/json" },
-    body: JSON.stringify({ sender: parseFrom(from), to: [{ email: to }], subject, htmlContent: html }),
+    headers: { authorization: `Bearer ${await gmailAccessToken()}`, "content-type": "application/json" },
+    body: JSON.stringify({ raw: raw.toString("base64url") }),
   });
-  if (!res.ok) throw new Error(`Brevo ${res.status}: ${await res.text()}`);
+  if (!res.ok) throw new Error(`Gmail API ${res.status}: ${await res.text()}`);
 };
 
 // ── Shared sender ─────────────────────────────────────────
 const sendEmail = async ({ to, subject, html }) => {
   try {
     const from = process.env.EMAIL_FROM ?? `Cineverse <${process.env.EMAIL_USER}>`;
-    if (process.env.BREVO_API_KEY) await sendViaBrevo({ from, to, subject, html });
+    if (process.env.GMAIL_REFRESH_TOKEN) await sendViaGmailApi({ from, to, subject, html });
     else await getTransporter().sendMail({ from, to, subject, html });
     console.log(`📧 Email sent to ${to}`);
   } catch (err) {
