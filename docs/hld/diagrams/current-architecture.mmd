@@ -1,0 +1,35 @@
+flowchart TB
+    subgraph browser["User browser"]
+        spa["React 19 SPA (Vite build)<br/>React Router, Axios, socket.io-client, Stripe.js"]
+    end
+
+    subgraph vercel["Vercel (static hosting)"]
+        dist["client/dist (index.html + assets)"]
+    end
+
+    subgraph render["Render web service: single Node.js process (monolith)"]
+        express["Express 5 app (server/index.js)<br/>helmet, CORS, rate limits, auditTrail"]
+        routes["15 route modules under /api/v1"]
+        services["Service layer (server/services)"]
+        sock["Socket.io server (server/socket.js)"]
+        cron["In-process setInterval jobs (every 5 min)<br/>expireStaleBookingsService, sendShowRemindersService"]
+        express --> routes --> services
+        cron --> services
+    end
+
+    atlas[("MongoDB Atlas<br/>13 collections, multi-document transactions")]
+    redis[("Redis<br/>cache:* keys, seat-lock:* keys, Socket.io adapter pub/sub")]
+    stripe[["Stripe API"]]
+    cloud[["Cloudinary"]]
+    mail[["Gmail API / SMTP"]]
+
+    spa -->|loads| dist
+    spa -->|"HTTPS REST /api/v1 (sync)"| express
+    spa <-->|"WebSocket (async events)"| sock
+    spa -->|confirmPayment| stripe
+    services -->|Mongoose| atlas
+    services -->|"node-redis (cache)"| redis
+    sock -->|"seat-lock keys + redis-adapter"| redis
+    services -->|"stripe SDK (sync calls)"| stripe
+    services -->|upload_stream| cloud
+    services -.->|"fire-and-forget emails"| mail

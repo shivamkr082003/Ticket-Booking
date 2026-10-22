@@ -1,0 +1,18 @@
+stateDiagram-v2
+    state "Stripe PaymentIntent (as seen by this app)" as PI {
+        [*] --> requires_payment_method: paymentIntents.create (initiate)
+        requires_payment_method --> succeeded: stripe.confirmPayment (browser)
+        requires_payment_method --> canceled: paymentIntents.cancel (cancel / expiry of IN_PROCESS booking)
+        succeeded --> refunded_partially_or_fully: refunds.create (cancel of SUCCESSFUL booking)
+    }
+    state "Booking.refundStatus" as RF {
+        [*] --> NONE
+        NONE --> REFUNDED: wallet-only refund, or Stripe refund status succeeded
+        NONE --> PENDING: Stripe refund status pending
+        NONE --> FAILED: Stripe refund error / failed / canceled
+        PENDING --> PENDING: no webhook or job updates it (verified gap)
+    }
+    note right of PI
+        The app never stores the PaymentIntent status itself.
+        It stores stripePaymentIntentId and re-reads status on confirm.
+    end note

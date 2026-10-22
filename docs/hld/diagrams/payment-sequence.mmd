@@ -1,0 +1,42 @@
+sequenceDiagram
+    autonumber
+    actor U as Customer
+    participant PP as PaymentPage.tsx / PaymentForm.tsx
+    participant SJS as Stripe.js (browser)
+    participant ST as Stripe API
+    participant API as POST /api/v1/bookings/confirm
+    participant BS as confirmBookingService
+    participant DB as MongoDB
+    participant SK as socket.js
+    participant N as notification + email services
+
+    PP->>SJS: Elements(clientSecret from initiate response)
+    U->>PP: enter card, Pay
+    PP->>SJS: stripe.confirmPayment({redirect: "if_required", return_url: current page})
+    SJS->>ST: confirm PaymentIntent (card data never reaches our server)
+    alt 3-D Secure redirect required
+        ST-->>U: redirect to bank, then back to /payment
+        Note over PP: router state is lost after redirect, PaymentPage navigates to /movies,<br/>confirm is never called (VERIFIED GAP)
+    else no redirect
+        ST-->>SJS: paymentIntent.status
+    end
+    alt status != succeeded or error
+        PP-->>U: show error toast, booking stays IN_PROCESS
+    else succeeded
+        PP->>API: {bookingId, stripePaymentIntentId}
+        API->>BS: confirmBookingService(userId from JWT)
+        BS->>ST: paymentIntents.retrieve(id)
+        alt status != succeeded
+            BS-->>API: 400 "Payment not completed"
+        end
+        BS->>DB: transaction: Booking.findOneAndUpdate({_id, userId, status IN_PROCESS, stripePaymentIntentId}, status SUCCESSFUL + ticketCode)
+        alt no matching booking (already confirmed, expired or cancelled)
+            BS-->>API: 400 "Booking not found or already processed"
+        end
+        BS->>DB: Coupon usedCount $inc (if coupon)
+        BS->>SK: emitBookingConfirmed (seats:booked, delete seat-lock keys)
+        BS-)N: in-app notification + confirmation email (fire-and-forget)
+        API-->>PP: confirmed booking
+        PP->>U: navigate /ticket/:bookingId (QR from ticketCode)
+    end
+    Note over ST,API: No Stripe webhook endpoint exists in the repository

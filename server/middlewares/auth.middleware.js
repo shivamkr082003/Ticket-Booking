@@ -65,7 +65,12 @@ export const isAuthenticated = async (req, res, next) => {
         next();
     } catch (error) {
         console.log(error);
-        if(error.name == "JsonWebTokenError") {
+        // Expired / not-yet-valid tokens are 401 too, so the client logs the user out
+        if(error.name == "TokenExpiredError") {
+            errorResponseBody.err = "Your session has expired. Please log in again.";
+            return res.status(STATUS_CODES.UNAUTHORISED).json(errorResponseBody);
+        }
+        if(error.name == "JsonWebTokenError" || error.name == "NotBeforeError") {
             errorResponseBody.err = error.message;
             return res.status(STATUS_CODES.UNAUTHORISED).json(errorResponseBody);
         }

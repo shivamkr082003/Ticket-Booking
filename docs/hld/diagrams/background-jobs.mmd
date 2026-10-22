@@ -1,0 +1,26 @@
+sequenceDiagram
+    autonumber
+    participant T as setInterval (server/index.js, every 5 min, per process)
+    participant EX as expireStaleBookingsService
+    participant CB as cancelBookingService
+    participant RM as sendShowRemindersService
+    participant DB as MongoDB
+    participant ST as Stripe
+    participant M as Gmail / Notification
+
+    T->>EX: run
+    EX->>DB: Booking.find({status IN_PROCESS, createdAt < now - 10 min})
+    loop each stale booking (sequential)
+        EX->>CB: cancelBookingService(reason "Payment timeout — auto expired")
+        CB->>DB: transaction: status CANCELLED, $pull bookedSeats, release wallet hold
+        CB->>ST: paymentIntents.cancel (if it already succeeded, the error is only logged)
+        CB-)M: cancellation notification + email
+    end
+    T->>RM: run
+    RM->>DB: Show.find({showTime in (now, now + 3h], isActive})
+    RM->>DB: Booking.find({showId in shows, SUCCESSFUL, reminderSentAt null})
+    loop each due booking
+        RM->>DB: findOneAndUpdate({_id, reminderSentAt null}, reminderSentAt now) (claim)
+        RM-)M: SHOW_REMINDER notification + email
+    end
+    Note over T: Jobs live inside the web process. On Render free tier they stop while the service sleeps.

@@ -1,0 +1,15 @@
+stateDiagram-v2
+    state "Available (not in Show.bookedSeats, no Redis key)" as AVAILABLE
+    state "Temp-locked (Redis seat-lock key, UI only)" as LOCKED
+    state "Reserved (in bookedSeats, booking IN_PROCESS)" as RESERVED
+    state "Sold (in bookedSeats, booking SUCCESSFUL)" as SOLD
+
+    [*] --> AVAILABLE
+    AVAILABLE --> LOCKED: socket seats:selecting (SET EX 600)
+    LOCKED --> AVAILABLE: seats:deselecting / disconnect / TTL expiry
+    AVAILABLE --> RESERVED: initiate (conditional $push in transaction)
+    LOCKED --> RESERVED: initiate (lock not checked by server)
+    RESERVED --> SOLD: confirm (status SUCCESSFUL)
+    RESERVED --> AVAILABLE: cancel or expiry job ($pull bookedSeats)
+    SOLD --> AVAILABLE: cancel before cutoff ($pull bookedSeats)
+    SOLD --> [*]: show time passes

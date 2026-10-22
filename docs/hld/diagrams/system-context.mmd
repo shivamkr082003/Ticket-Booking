@@ -1,0 +1,29 @@
+flowchart LR
+    customer(["Customer (CUSTOMER)"])
+    owner(["Theatre owner (CLIENT)"])
+    admin(["Platform admin (ADMIN)"])
+
+    subgraph cineverse["Cineverse (this repository)"]
+        web["React SPA (client/)"]
+        api["Express API + Socket.io (server/)"]
+    end
+
+    stripe[["Stripe (PaymentIntents, Refunds)"]]
+    atlas[("MongoDB Atlas")]
+    redis[("Redis (Redis Cloud in production)")]
+    cloudinary[["Cloudinary (image/video storage)"]]
+    gmail[["Gmail (Gmail API over HTTPS, or SMTP locally)"]]
+    youtube[["YouTube / Wikimedia (trailer and poster URLs only)"]]
+
+    customer -->|browse, book, pay, cancel| web
+    owner -->|theatres, screens, shows, check-in| web
+    admin -->|movies, users, coupons, support| web
+    web -->|"REST /api/v1 (HTTPS, JWT header)"| api
+    web <-->|"WebSocket (seat events)"| api
+    web -->|card details via Stripe.js| stripe
+    web -.->|embeds| youtube
+    api -->|Mongoose| atlas
+    api -->|cache, seat locks, pub/sub| redis
+    api -->|create/retrieve/cancel PaymentIntent, refunds| stripe
+    api -->|upload/delete| cloudinary
+    api -->|OTP, confirmations, reminders| gmail

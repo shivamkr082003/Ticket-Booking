@@ -1,0 +1,46 @@
+sequenceDiagram
+    autonumber
+    actor U as Customer
+    participant SP as SeatSelectionPage.tsx
+    participant API as Express (/api/v1/bookings)
+    participant MW as isAuthenticated + validate(initiateBookingSchema)
+    participant BS as booking.service.js initiateBookingService
+    participant PR as pricing.service.js quoteOrder
+    participant DB as MongoDB (session transaction)
+    participant W as wallet.service.js debitWallet
+    participant ST as Stripe
+
+    U->>SP: pick seats (+ food, coupon, useWallet)
+    SP->>API: POST /bookings/quote (live price, no seats held)
+    API-->>SP: OrderQuote
+    U->>SP: Proceed to pay
+    SP->>API: POST /bookings/initiate {showId, seats, addOns, couponCode, useWallet}
+    API->>MW: verify JWT, load req.user, Zod parse
+    MW->>BS: initiateBookingService({..., userId, isPrime})
+    BS->>DB: session.withTransaction(...)
+    BS->>DB: Show.findById(showId).populate(movie, theatre menu)
+    alt show missing / inactive / seats in bookedSeats / not enough seats
+        BS-->>API: throw 404 / 400 / 409
+    end
+    BS->>PR: quoteOrder(show, seats, addOns, couponCode, isPrime)
+    PR->>DB: Coupon.findOne + per-user usage count (if coupon)
+    PR-->>BS: subtotal, discount, food, coupon, fee, GST, total
+    BS->>DB: Show.findOneAndUpdate({_id, bookedSeats NOT containing seats}, $push bookedSeats)
+    alt update returned null (another request won)
+        BS-->>API: throw 409 "seats were just booked by someone else"
+    end
+    opt useWallet
+        BS->>W: debitWallet (conditional walletBalance >= amount, same session)
+    end
+    opt cardAmount > 0
+        BS->>ST: paymentIntents.create(amount in paise, metadata)
+        Note over BS,ST: network call made inside the transaction callback
+    end
+    BS->>DB: Booking.create(status IN_PROCESS, or SUCCESSFUL + ticketCode if wallet covered all)
+    DB-->>BS: commit
+    opt fully paid by wallet
+        BS->>BS: afterConfirmed() (socket seats:booked, notification, email)
+    end
+    BS-->>API: {bookingId, clientSecret, cardAmount, totalAmount, show{...}}
+    API-->>SP: 201 Created
+    SP->>SP: navigate("/payment", { state: { booking } })

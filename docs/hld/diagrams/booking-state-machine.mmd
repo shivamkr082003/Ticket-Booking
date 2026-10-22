@@ -1,0 +1,14 @@
+stateDiagram-v2
+    [*] --> IN_PROCESS: POST /bookings/initiate (cardAmount > 0)
+    [*] --> SUCCESSFUL: POST /bookings/initiate (wallet covers total)
+    IN_PROCESS --> SUCCESSFUL: POST /bookings/confirm (Stripe PI succeeded)
+    IN_PROCESS --> CANCELLED: POST /bookings/cancel (user)
+    IN_PROCESS --> CANCELLED: expireStaleBookingsService (older than 10 min, reason "Payment timeout")
+    SUCCESSFUL --> CANCELLED: POST /bookings/cancel (before cutoff, refund per policy)
+    SUCCESSFUL --> SUCCESSFUL: POST /bookings/check-in (sets checkedInAt, status unchanged)
+    CANCELLED --> [*]
+    SUCCESSFUL --> [*]
+    note right of CANCELLED
+        EXPIRED exists in BOOKING_STATUS and the schema enum
+        but no code path ever sets it (verified).
+    end note

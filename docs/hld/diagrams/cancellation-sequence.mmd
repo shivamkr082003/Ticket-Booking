@@ -1,0 +1,43 @@
+sequenceDiagram
+    autonumber
+    actor U as Customer
+    participant MB as MyBookingsPage.tsx
+    participant API as /api/v1/bookings
+    participant BS as booking.service.js
+    participant RP as utils/refundPolicy.js refundQuote
+    participant DB as MongoDB
+    participant W as wallet.service.js creditWallet
+    participant ST as Stripe
+    participant SK as socket.js
+
+    U->>MB: Cancel
+    MB->>API: GET /bookings/:id/refund-quote
+    API->>BS: getRefundQuoteService (owner check)
+    BS->>RP: refundQuote(booking, showTime, isPrime, theatre policy)
+    RP-->>MB: cancellable, refundPct, refundAmount, deadlines
+    U->>MB: Confirm (refundTo SOURCE or WALLET)
+    MB->>API: POST /bookings/cancel {bookingId, cancellationReason, refundTo}
+    API->>BS: cancelBookingService
+    BS->>DB: Booking.findOne({_id, userId}) status must be IN_PROCESS or SUCCESSFUL
+    BS->>RP: refundQuote again (server-side)
+    alt not cancellable (< cutoff, checked in)
+        BS-->>MB: 400 reason
+    end
+    BS->>DB: transaction start
+    BS->>DB: Booking.findOneAndUpdate({_id, userId, status: quotedStatus}, CANCELLED, refundAmount, refundStatus)
+    alt status changed meanwhile
+        BS-->>MB: 409 "This booking changed while cancelling"
+    end
+    BS->>DB: Show $pull bookedSeats
+    opt toWallet > 0
+        BS->>W: creditWallet (same session)
+    end
+    BS->>DB: commit
+    alt booking was IN_PROCESS with a PaymentIntent
+        BS->>ST: paymentIntents.cancel (errors only logged)
+    else toCard > 0
+        BS->>ST: refunds.create(amount, idempotencyKey refund-bookingId)
+        BS->>DB: save stripeRefundId + refundStatus (REFUNDED / PENDING / FAILED)
+    end
+    BS->>SK: emitBookingCancelled (seats:released)
+    BS-)U: notification + cancellation email (fire-and-forget)

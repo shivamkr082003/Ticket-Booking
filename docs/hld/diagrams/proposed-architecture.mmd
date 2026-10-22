@@ -1,0 +1,27 @@
+flowchart TB
+    %% PROPOSED — none of the components marked (NEW) exist in the repository today
+    spa["React SPA (existing)"]
+    subgraph api["Express API instances x N (existing code, horizontally scaled)"]
+        rest["REST + Socket.io (existing)<br/>+ socket auth middleware (NEW)"]
+        wh["POST /api/v1/payments/webhook (NEW)<br/>Stripe signature verification, idempotent"]
+    end
+    lb["Load balancer with WebSocket support (NEW)"]
+    worker["Worker process (NEW)<br/>BullMQ or Agenda: expiry, reminders, email fan-out, refund reconciliation"]
+    queue[("Redis queue (NEW, can reuse Redis)")]
+    atlas[("MongoDB Atlas (existing)<br/>+ indexes on Show.showTime, Booking{status,createdAt} (NEW)")]
+    redis[("Redis (existing)")]
+    stripe[["Stripe (existing) + webhooks (NEW)"]]
+    mail[["Transactional email provider with own domain (NEW)"]]
+    obs[["Logs + metrics + error tracking (NEW)"]]
+
+    spa --> lb --> rest
+    rest --> atlas
+    rest --> redis
+    rest -->|enqueue| queue --> worker
+    worker --> atlas
+    worker --> mail
+    worker --> stripe
+    stripe -->|payment_intent.succeeded, charge.refunded| wh
+    wh --> atlas
+    rest -.-> obs
+    worker -.-> obs

@@ -1,0 +1,32 @@
+flowchart TB
+    dev["Developer pushes to GitHub main<br/>shivamkr082003/Ticket-Booking"]
+    gha["GitHub Actions (.github/workflows/ci.yml)<br/>npm ci + vitest in server/ on Node 22"]
+    subgraph vercel["Vercel project 'cineverse' (root dir: client)"]
+        vbuild["vite build (tsc -b and vite build)"]
+        cdn["Static site<br/>cineverse-eight-theta.vercel.app"]
+        vbuild --> cdn
+    end
+    subgraph render["Render web service 'cineverse-api-shivam' (render.yaml)"]
+        rbuild["npm ci (rootDir server)"]
+        node["node index.js<br/>free plan, region singapore, healthCheckPath /health"]
+        rbuild --> node
+    end
+    atlas[("MongoDB Atlas cluster0 (region not in repo)")]
+    redis[("Redis Cloud (region not in repo)")]
+    stripe[["Stripe (test mode keys)"]]
+    cloud[["Cloudinary"]]
+    gmail[["Gmail API"]]
+    uptime["UptimeRobot (external, pings /health every 5 min;<br/>configured outside the repo)"]
+
+    dev --> gha
+    dev -->|git integration| vbuild
+    dev -->|auto deploy on push| rbuild
+    cdn -->|VITE_API_BASE_URL| node
+    node --> atlas
+    node --> redis
+    node --> stripe
+    node --> cloud
+    node --> gmail
+    uptime -.-> node
+    note1["CI result does not gate either deployment"]
+    gha -.- note1

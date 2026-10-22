@@ -1,0 +1,141 @@
+erDiagram
+    USER ||--o{ THEATRE : "owns (owner)"
+    USER ||--o{ BOOKING : "makes (userId)"
+    USER ||--o{ REVIEW : "writes (userId)"
+    USER ||--o{ THEATRE_REVIEW : "writes (userId)"
+    USER ||--o{ WALLET_TXN : "ledger (userId)"
+    USER ||--o{ GIFT_CARD : "purchases (purchasedBy)"
+    USER ||--o{ NOTIFICATION : "receives (userId)"
+    USER ||--o{ SUPPORT_TICKET : "opens (userId)"
+    USER ||--o{ AUDIT_LOG : "acts (actor)"
+    USER }o--o{ MOVIE : "watchlist / notifyMovies (arrays)"
+    THEATRE }o--o{ MOVIE : "movies (array of ids)"
+    THEATRE ||--o{ SHOW : "theatreId"
+    MOVIE ||--o{ SHOW : "movieId"
+    SHOW ||--o{ BOOKING : "showId"
+    MOVIE ||--o{ REVIEW : "movieId"
+    THEATRE ||--o{ THEATRE_REVIEW : "theatreId"
+    BOOKING ||--o{ WALLET_TXN : "bookingId (optional)"
+    BOOKING ||--o{ SUPPORT_TICKET : "bookingId (optional)"
+    COUPON ||--o{ BOOKING : "couponCode (string, not a ref)"
+
+    USER {
+        ObjectId _id PK
+        string name UK
+        string email UK
+        string password "bcrypt hash, select false"
+        string userRole "CUSTOMER | CLIENT | ADMIN"
+        string userStatus "APPROVED | PENDING | REJECTED | UNVERIFIED"
+        boolean isEmailVerified
+        string emailOtp "select false"
+        date primeExpiresAt
+        number walletBalance "min 0"
+        ObjectId_array watchlist
+        ObjectId_array notifyMovies
+    }
+    MOVIE {
+        ObjectId _id PK
+        string name
+        string_array genre
+        string_array languages
+        date releaseDate
+        number duration
+        string releaseStatus "COMING_SOON | RELEASED | BANNED"
+        number rating "cached avg of REVIEW"
+        boolean isActive
+    }
+    THEATRE {
+        ObjectId _id PK
+        ObjectId owner FK
+        string city
+        ObjectId_array movies
+        embedded screens "name, sound, projection, layout"
+        embedded menu "F and B items"
+        object pricingRules "weekend, morning, primeTime, openingDay pct"
+        object cancellationPolicy "optional overrides"
+        object rating "cached from THEATRE_REVIEW"
+        boolean isActive
+    }
+    SHOW {
+        ObjectId _id PK
+        ObjectId theatreId FK
+        ObjectId movieId FK
+        date showTime
+        string screen
+        number noOfSeats
+        string_array bookedSeats "availability source of truth"
+        embedded seatLayout "snapshot incl. category prices"
+        number price
+        string format
+        boolean isActive
+    }
+    BOOKING {
+        ObjectId _id PK
+        ObjectId showId FK
+        ObjectId userId FK
+        string_array seats
+        number totalAmount
+        string status "IN_PROCESS | SUCCESSFUL | CANCELLED | EXPIRED"
+        string stripePaymentIntentId
+        string ticketCode UK "sparse"
+        number walletApplied
+        string paidWith "CARD | WALLET | MIXED"
+        string refundStatus "NONE | PENDING | REFUNDED | FAILED"
+        string couponCode
+        date checkedInAt
+        date reminderSentAt
+    }
+    REVIEW {
+        ObjectId _id PK
+        ObjectId movieId FK
+        ObjectId userId FK
+        number rating "1-10"
+        string comment
+    }
+    THEATRE_REVIEW {
+        ObjectId _id PK
+        ObjectId theatreId FK
+        ObjectId userId FK
+        number rating "1-5"
+    }
+    COUPON {
+        ObjectId _id PK
+        string code UK
+        string type "PERCENT | FLAT"
+        number usageLimit
+        number usedCount
+        boolean isActive
+    }
+    WALLET_TXN {
+        ObjectId _id PK
+        ObjectId userId FK
+        string type "CREDIT | DEBIT"
+        string reason "REFUND | GIFT_CARD | BOOKING | BOOKING_RELEASED"
+        number balanceAfter
+    }
+    GIFT_CARD {
+        ObjectId _id PK
+        string code UK "sparse"
+        string status "PENDING | ACTIVE | REDEEMED"
+        ObjectId purchasedBy FK
+        string stripePaymentIntentId
+    }
+    NOTIFICATION {
+        ObjectId _id PK
+        ObjectId userId FK
+        string type
+        date readAt "TTL 60 days on createdAt"
+    }
+    SUPPORT_TICKET {
+        ObjectId _id PK
+        ObjectId userId FK
+        ObjectId bookingId FK
+        string status "OPEN | IN_PROGRESS | RESOLVED"
+        embedded replies
+    }
+    AUDIT_LOG {
+        ObjectId _id PK
+        ObjectId actor FK
+        string action
+        string entity "TTL 365 days"
+    }

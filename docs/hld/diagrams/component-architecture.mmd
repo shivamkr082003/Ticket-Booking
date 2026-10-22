@@ -1,0 +1,26 @@
+flowchart LR
+    subgraph client["client/src"]
+        pages["pages/*<br/>HomePage, MoviePage, SeatSelectionPage,<br/>PaymentPage, TicketPage, MyBookingsPage,<br/>AdminPanel, ClientPanel, WalletPage, PrimePage"]
+        comps["components/*<br/>SeatGrid, BookingSummary, PaymentForm,<br/>FoodPicker, dashboard tabs"]
+        ctx["context/*<br/>AuthContext, SocketContext,<br/>CityContext, ThemeContext"]
+        hook["hooks/useShowSocket.ts"]
+        apic["api/index.api.ts (Axios instance + typed API objects)"]
+        pages --> comps
+        pages --> apic
+        pages --> hook --> ctx
+    end
+
+    subgraph server["server/"]
+        mw["middlewares/<br/>auth (isAuthenticated, isAdmin, isAdminOrClient)<br/>ownership (ownsTheatreParam, ownsTheatreInBody, ownsShowParam)<br/>validation (Zod), audit (auditTrail)"]
+        ctrl["controllers/ (13 files)"]
+        svc["services/<br/>booking, pricing, show, theatre, movie, cache,<br/>wallet, prime, coupon, notification, email,<br/>support, payout, stats, review, theatreReview,<br/>watchlist, user, stripe, cloudinary"]
+        utl["utils/<br/>seatLayout, dynamicPricing, refundPolicy,<br/>constants, response.utils"]
+        mdl["models/ (13 Mongoose models)"]
+        sk["socket.js"]
+        mw --> ctrl --> svc --> mdl
+        svc --> utl
+        svc -->|emitBookingConfirmed / emitBookingCancelled| sk
+    end
+
+    apic -->|REST| mw
+    hook <-->|"join:show, seats:selecting, seats:deselecting /<br/>seats:state, seats:blocked, seats:released, seats:booked"| sk

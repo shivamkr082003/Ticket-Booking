@@ -1,0 +1,32 @@
+sequenceDiagram
+    autonumber
+    actor A as User A
+    actor B as User B
+    participant SK as socket.js (Socket.io)
+    participant R as Redis
+    participant API as POST /bookings/initiate
+    participant DB as MongoDB
+
+    A->>SK: emit join:show(showId)
+    SK->>R: SCAN seat-lock:showId:*
+    SK-->>A: seats:state {tempBlocked}
+    B->>SK: emit join:show(showId)
+    A->>SK: emit seats:selecting {showId, seats:[C14], userId}
+    Note over SK: userId comes from the client payload, and the socket is not authenticated
+    SK->>R: SET seat-lock:showId:C14 {userId, socketId} EX 600
+    SK->>R: SADD socket-seats:socketId + EXPIRE 600
+    SK-->>B: seats:blocked {seats:[C14]} (UI greys the seat)
+
+    Note over A,DB: Redis locks are advisory UI state. initiateBookingService never reads them.
+    par A and B both call initiate for C14 (e.g. B bypasses the UI)
+        A->>API: initiate {seats:[C14]}
+        B->>API: initiate {seats:[C14]}
+    end
+    API->>DB: A: findOneAndUpdate({_id, bookedSeats has none of [C14]}, $push C14)
+    API->>DB: B: same conditional update
+    DB-->>API: exactly one update matches (single-document atomicity)
+    API-->>A: 201 booking IN_PROCESS
+    API-->>B: 409 "One or more seats were just booked by someone else"
+    A->>SK: (after payment) confirm -> emitBookingConfirmed
+    SK-->>B: seats:booked {C14}
+    SK->>R: DEL seat-lock:showId:C14
