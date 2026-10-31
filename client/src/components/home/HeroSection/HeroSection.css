@@ -18,10 +18,6 @@
   transform: translateZ(0);
   will-change: transform, opacity;
 }
-/* Poster-only movies: a deliberately soft, colour-rich glow instead of an upscaled poster */
-.hero-bg--ambient {
-  filter: blur(56px) saturate(1.4) brightness(.6);
-}
 .hero-bg--empty {
   background:
     radial-gradient(ellipse 60% 50% at 75% 35%, rgba(var(--accent-rgb),.18), transparent 70%),
@@ -229,28 +225,6 @@
   color: var(--text-secondary);
 }
 
-/* ===== Featured poster card (when there's no banner) ===== */
-.hero-poster-card {
-  margin-left: auto;
-  margin-right: 150px;          /* clear the poster strip */
-  width: clamp(200px, 17vw, 260px);
-  aspect-ratio: 2 / 3;
-  flex-shrink: 0;
-  padding: 0;
-  border: 1px solid rgba(255,255,255,.14);
-  border-radius: 18px;
-  overflow: hidden;
-  background: rgba(255,255,255,.04);
-  cursor: pointer;
-}
-
-.hero-poster-card img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 /* ===== Poster Strip ===== */
 .poster-strip {
   position: absolute;
@@ -342,12 +316,10 @@
   .poster-strip  { padding-right: 32px; }
   .hero-content  { padding-left: 32px; padding-right: 32px; }
   .progress-dots { left: 32px; }
-  .hero-poster-card { margin-right: 120px; }
 }
 
 @media (max-width: 900px) {
   .poster-strip  { display: none; }
-  .hero-poster-card { display: none; }
   .hero-text     { max-width: 100%; }
   .progress-dots { left: 32px; bottom: 60px; }
 }
