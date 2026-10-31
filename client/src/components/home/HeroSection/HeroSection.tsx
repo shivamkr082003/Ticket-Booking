@@ -96,6 +96,9 @@ export default function HeroSection({ movies, loading }: Props) {
 
   const m           = movies[active];
   const accentColor = ACCENTS[active % ACCENTS.length];
+  // Portrait posters are small; stretching one across the hero pixelates it,
+  // so without a landscape banner we blur it into an ambient backdrop and show it sharp as a card
+  const hasBanner   = Boolean(m.bannerUrl);
   const bgImage     = m.bannerUrl || m.posterUrl;
   const dur         = `${Math.floor(m.duration / 60)}h ${m.duration % 60}m`;
   const year        = new Date(m.releaseDate).getFullYear();
@@ -108,10 +111,10 @@ export default function HeroSection({ movies, loading }: Props) {
 
         {/* BG */}
         <AnimatePresence mode="wait">
-          <motion.div key={`bg-${active}`} className="hero-bg"
+          <motion.div key={`bg-${active}`} className={`hero-bg${hasBanner ? "" : " hero-bg--ambient"}`}
             style={{ backgroundImage: `url(${bgImage})`, y: bgY }}
-            initial={{ opacity: 0, scale: 1.02 }}
-            animate={{ opacity: 1,  scale: 1 }}
+            initial={{ opacity: 0, scale: hasBanner ? 1.02 : 1.2 }}
+            animate={{ opacity: 1,  scale: hasBanner ? 1 : 1.15 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} />
         </AnimatePresence>
@@ -199,6 +202,22 @@ export default function HeroSection({ movies, loading }: Props) {
               </motion.button>
             </motion.div>
           </div>
+
+          {!hasBanner && (
+            <AnimatePresence mode="wait">
+              <motion.button key={`card-${active}`} type="button" className="hero-poster-card"
+                aria-label={`Open ${m.name}`}
+                onClick={() => navigate(`/movies/${m._id}`)}
+                style={{ boxShadow: `0 30px 80px rgba(0,0,0,.65), 0 0 70px ${accentColor}40` }}
+                initial={{ opacity: 0, y: 28, rotate: -2 }}
+                animate={{ opacity: 1, y: 0, rotate: 0 }}
+                exit={{ opacity: 0, y: -14 }}
+                whileHover={{ y: -6, rotate: 1 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
+                <img src={m.posterUrl} alt="" />
+              </motion.button>
+            </AnimatePresence>
+          )}
         </div>
 
         {/* ── Poster strip — no AnimatePresence, just animate in-place ── */}
