@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import crypto   from "crypto";
+import fs       from "fs";
 import mongoose from "mongoose";
 import connectDB from "../config/db.js";
 
@@ -49,6 +50,12 @@ const istAt = (dayOffset, hh, mm) => {
 };
 
 const WIKI = "https://upload.wikimedia.org/wikipedia/en";
+
+// Hero banners uploaded with `npm run banners` — { "Movie name": "https://res.cloudinary.com/…" }
+const BANNERS = (() => {
+    try { return JSON.parse(fs.readFileSync(new URL("./data/banners.json", import.meta.url), "utf8")); }
+    catch { return {}; }
+})();
 const YT   = (id) => `https://www.youtube.com/watch?v=${id}`;
 
 // ── Movies ───────────────────────────────────────────────
@@ -373,7 +380,7 @@ async function main() {
         movieDocs.push({
             name: m.name, description: m.description, casts: m.casts, trailerUrl: YT(m.trailer), languages: m.languages,
             releaseDate: m.upcoming ? daysFromNow(m.upcoming) : daysAgo(m.released), duration: m.duration,
-            posterUrl, bannerUrl: "", images: [], genre: m.genre, certificate: m.certificate, director: m.director,
+            posterUrl, bannerUrl: BANNERS[m.name] ?? "", images: [], genre: m.genre, certificate: m.certificate, director: m.director,
             releaseStatus: m.upcoming ? "COMING_SOON" : "RELEASED", rating: 0, isActive: true,
             createdAt: m.upcoming ? daysAgo(int(2, 20)) : daysAgo(m.released + int(5, 15)),
         });

@@ -1,2 +1,4 @@
 .env
 node_modules/
+# source images for npm run banners (only the Cloudinary URLs in scripts/data/banners.json are committed)
+scripts/banners/

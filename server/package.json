@@ -9,7 +9,8 @@
     "test:watch": "vitest",
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "seed": "node scripts/seed.js"
+    "seed": "node scripts/seed.js",
+    "banners": "node scripts/upload-banners.js"
   },
   "author": "Shivam Kumar",
   "license": "ISC",
